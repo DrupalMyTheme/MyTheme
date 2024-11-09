@@ -109,6 +109,7 @@ function my_theme_preprocess_html(array &$variables) {
 
 /***** テーマの設定関係をpage.html.twigに反映する *****/
 function my_theme_preprocess_page(&$variables) {
+  // サイトブランディングの左寄せ・中央寄せの設定
   $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
   $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
   $variables['branding_alignment'] = theme_get_setting('branding_alignment');
