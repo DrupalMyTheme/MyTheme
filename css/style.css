@@ -1,0 +1,85 @@
+/***** Site Branding *****/
+/* General styles */
+.branding-container {
+  display: flex;
+  align-items: center;  /* 縦方向を中央に揃える */
+  width: 100%;
+}
+
+/* Branding alignment classes */
+.justify-content-left .branding-container {
+  justify-content: flex-start;  /* 左寄せ */
+}
+
+.justify-content-center .branding-container {
+  justify-content: center;  /* 中央寄せ */
+}
+
+/* When navigation is present */
+.with-navigation .branding-container {
+  justify-content: flex-start;  /* ナビゲーションがある場合、左寄せ */
+}
+
+.with-navigation .navigation {
+  margin-left: auto;  /* ナビゲーションを右寄せ */
+}
+
+.site-logo img {
+  max-width: 100px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 1.5em;
+  margin-left: 20px;
+}
+
+.site-slogan {
+  font-size: 0.9em;
+  color: #888888;
+  margin-left: 20px;
+}
+
+/* Navigation styles */
+.navigation {
+  display: flex;
+  align-items: center;  /* 縦方向を中央に揃える */
+  justify-content: flex-end;  /* 横方向を右寄せ */
+}
+
+
+/***** Blockquote *****/
+blockquote {
+    position: relative;
+    padding: 10px 15px 10px 40px;
+    box-sizing: border-box;
+    font-style: italic;
+    color: var(text-secondary);
+    border-left: 4px solid rgb(145, 145, 145);
+    box-shadow: 0 2px 4px rgb(105, 105, 105);
+}
+
+blockquote:before{
+    display: inline-block;
+    position: absolute;
+    top: 7px;
+    left: 0;
+    content: "“";
+    font-family: sans-serif;
+    color: var(text-secondary);
+    font-size: 45px;
+    line-height: 1;
+}
+
+blockquote p {
+    padding: 0;
+    margin: 7px 0;
+    line-height: 1.7;
+}
+
+blockquote cite {
+    display: block;
+    text-align: right;
+    color: var(text-secondary);
+    font-size: 0.9em;
+}

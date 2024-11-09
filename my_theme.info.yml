@@ -1,0 +1,44 @@
+name: My Theme
+type: theme
+'base theme': stable9
+version: 1.0.0
+libraries:
+  - core/normalize
+  - my_theme/base
+  - my_theme/messages
+  - my_theme/style
+  - my_theme/custom-navbar
+libraries-extend:
+  user/drupal.user:
+    - my_theme/user
+  core/drupal.dropbutton:
+    - my_theme/dropbutton
+  core/drupal.dialog:
+    - my_theme/dialog
+  file/drupal.file:
+    - my_theme/file
+  core/drupal.progress:
+    - my_theme/progress
+description: ''
+core_version_requirement: ^11
+generator: 'starterkit_theme:11.0.5'
+
+
+regions:
+  header: Header
+  branding: Branding
+  main_navigation: Main Navigation
+  additional_navigation: Additional navigation
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  content_bottom: Content Bottom
+  sidebar_first: Sidebar First
+  sidebar_second: Sidebar Second
+  footer_top: Footer Top
+  footer_first: Footer First
+  footer_second: Footer Second
+  footer_third: Footer Third
+  footer_bottom: Footer Bottom
+
