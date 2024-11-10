@@ -120,6 +120,7 @@ function my_theme_preprocess_page(&$variables) {
 
 use Drupal\Core\Menu\MenuTreeParameters;
 
+/***** メインメニューのデータ取得 *****/
 function my_theme_preprocess_block(&$variables) {
   if ($variables['plugin_id'] == 'system_menu_block:main') {
     $parameters = new \Drupal\Core\Menu\MenuTreeParameters();
