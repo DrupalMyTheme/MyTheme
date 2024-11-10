@@ -9,6 +9,7 @@ libraries:
   - my_theme/style
   - my_theme/custom-navbar
   - my_theme/custom-branding
+  - my_theme/custom-header
 libraries-extend:
   user/drupal.user:
     - my_theme/user

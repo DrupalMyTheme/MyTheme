@@ -46,14 +46,15 @@
 }
 
 .navbar .dropdown-item {
+  background-color: var(--navbar-bg-color);
   color: var(--navbar-text-color);
 }
 
 .navbar .dropdown-item:hover {
 /*  color: var(--bs-dark); */
 /*  background-color: var(--bs-light); */
-  color: var(--navbar-text-color);
   background-color: var(--navbar-text-color);
+  color: var(--navbar-text-color);
 }
 
 /* メインナビゲーションのスタイル */

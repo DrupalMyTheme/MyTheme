@@ -209,3 +209,9 @@ custom-branding:
   css:
     theme:
       css/custom-branding.css: {}
+      
+custom-header:
+  version: 1.x
+  css:
+    theme:
+      css/custom-header.css: {}

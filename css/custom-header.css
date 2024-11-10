@@ -1,0 +1,17 @@
+/* header-contentのスタイル */
+.header-content {
+  display: flex !important;
+  justify-content: flex-end !important; /* 水平方向を右寄せ */
+  align-items: center !important; /* 縦方向を中央に揃える */
+  width: 100% !important; /* 幅を100%に設定 */
+  flex-wrap: nowrap !important; /* 要素が折り返さないようにする */
+}
+
+
+
+/* region-headerのスタイル */
+.region-header {
+  display: flex;
+  justify-content: flex-end !important; /* 水平方向を右寄せ */
+  align-items: center; /* 縦方向を中央に揃える */
+}

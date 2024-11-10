@@ -48,7 +48,11 @@
 <div class="{{ container_class }}-{{ bootstrap_size }}">
 
   <header class="row">
-    {{ page.header }}
+    <div class="header-content d-flex align-items-center justify-content-end">
+      <div class="region region-header">
+        {{ page.header }}
+      </div>
+    </div>
     <div class="row d-flex align-items-center justify-content-between">
       <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
         <div class="branding-container">
@@ -69,7 +73,7 @@
           </div>
         </div>
       {% endif %}
-    </div> <!-- ここに閉じタグが必要です -->
+    </div>
     <div class="row">
       {{ page.breadcrumb }}
       {{ page.highlighted }}
@@ -81,7 +85,7 @@
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
      {% set sidebar_first_exists = page.sidebar_first is not empty %}
      {% set sidebar_second_exists = page.sidebar_second is not empty %}
-     {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_second_exists ? 3 : 0) %}
+     {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_secondexists ? 3 : 0) %}
 
      {% set sidebar_first_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
      {% set sidebar_second_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
