@@ -5,31 +5,39 @@
   display: block;
 }
 
-
 /* Navigation styles */
 .navigation {
   display: flex;
-  align-items: center;  /* 縦方向を中央に揃える */
-  justify-content: flex-end;  /* 横方向を右寄せ */
+  align-items: center; /* 縦方向を中央に揃える */
+  justify-content: flex-end; /* 横方向を右寄せ */
 }
 
-
-
 :root {
-  --navbar-bg-color: var(--bs-primary);
-  --navbar-text-color: var(--bs-light);
+/*  --navbar-bg-color: var(--bs-primary); */
+/*  --navbar-text-color: var(--bs-light); */
+  --navbar-bg-color: var(bg-body-tertiary);
+  --navbar-text-color: var(text-primary);
 }
 
 .navbar {
   background-color: var(--navbar-bg-color);
+  display: flex; 
+  align-items: center; /* 縦方向を中央に揃える */
+  justify-content: space-between; /* スペースを均等に配置 */
 }
 
 .navbar .nav-link {
   color: var(--navbar-text-color);
+  background-color: var(--navbar-bg-color); /* 初期背景色を指定 */
 }
 
-.navbar .nav-link:hover {
-  color: var(--bs-dark);
+/* ホバー時、フォーカス時、アクティブ時のスタイルを固定 */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link:active,
+.navbar .nav-link.active {
+  color: var(--navbar-text-color) !important;
+  background-color: var(--navbar-bg-color) !important;
 }
 
 .navbar .dropdown-menu {
@@ -42,6 +50,22 @@
 }
 
 .navbar .dropdown-item:hover {
-  color: var(--bs-dark);
-  background-color: var(--bs-light);
+/*  color: var(--bs-dark); */
+/*  background-color: var(--bs-light); */
+  color: var(--navbar-text-color);
+  background-color: var(--navbar-text-color);
+}
+
+/* メインナビゲーションのスタイル */
+.main-nav { 
+  display: flex; 
+  align-items: center; /* 縦方向を中央に揃える */
+  justify-content: flex-end; /* メインメニューを右寄せにする */
+  flex: 1; /* スペースを均等に割り当てる */ 
+}
+
+/* アディショナルナビゲーションのスタイル */ 
+.additional-nav { 
+  display: flex; 
+  align-items: center; /* 縦方向を中央に揃える */
 }
