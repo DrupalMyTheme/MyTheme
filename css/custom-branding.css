@@ -1,0 +1,44 @@
+/***** Site Branding *****/
+/* General styles */
+.branding-container {
+  display: flex;
+  align-items: center;  /* 縦方向を中央に揃える */
+  width: 100%;
+}
+
+/* Branding alignment classes */
+.justify-content-left .branding-container {
+  justify-content: flex-start;  /* 左寄せ */
+}
+
+.justify-content-center .branding-container {
+  justify-content: center;  /* 中央寄せ */
+}
+
+/* When navigation is present */
+.with-navigation .branding-container {
+  justify-content: flex-start;  /* ナビゲーションがある場合、左寄せ */
+}
+
+.with-navigation .navigation {
+  margin-left: auto;  /* ナビゲーションを右寄せ */
+}
+
+.site-logo img {
+  max-width: 100px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 1.5em;
+  margin-left: 20px;
+}
+
+.site-slogan {
+  font-size: 0.9em;
+  color: #888888;
+  margin-left: 20px;
+}
+
+
+

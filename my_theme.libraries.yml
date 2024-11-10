@@ -203,3 +203,9 @@ custom-navbar:
     js/custom-navbar.js: {}
   dependencies:
     - core/jquery
+
+custom-branding:
+  version: 1.x
+  css:
+    theme:
+      css/custom-branding.css: {}

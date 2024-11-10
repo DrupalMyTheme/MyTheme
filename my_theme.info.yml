@@ -8,6 +8,7 @@ libraries:
   - my_theme/messages
   - my_theme/style
   - my_theme/custom-navbar
+  - my_theme/custom-branding
 libraries-extend:
   user/drupal.user:
     - my_theme/user
