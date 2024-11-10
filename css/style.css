@@ -40,12 +40,6 @@
   margin-left: 20px;
 }
 
-/* Navigation styles */
-.navigation {
-  display: flex;
-  align-items: center;  /* 縦方向を中央に揃える */
-  justify-content: flex-end;  /* 横方向を右寄せ */
-}
 
 
 /***** Blockquote *****/
