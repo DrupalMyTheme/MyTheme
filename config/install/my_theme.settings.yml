@@ -1,0 +1,13 @@
+features:
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+logo:
+  use_default: 1
+favicon:
+  use_default: 1
+container_type: container
+bootstrap_size: md
+bootswatch_theme: cerulean
+branding_alignment: left

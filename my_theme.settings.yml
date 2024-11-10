@@ -1,6 +1,0 @@
-theme:
-  my_theme:
-    bootswatch_theme: 'bootstrap5'  # デフォルトテーマ
-    # my_theme.settings.yml
-    container_type: 'container'
-    bootstrap_size: 'lg'
