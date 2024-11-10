@@ -54,18 +54,19 @@
         </div>
       </div>
       {% if page.main_navigation or page.additional_navigation %}
-      <div class="col-12 col-md-6 d-flex justify-content-end">
-        <div class="navigation">
-          {% if page.main_navigation %}
-            {{ page.main_navigation }}
-          {% endif %}
-          {% if page.additional_navigation %}
-            {{ page.additional_navigation }}
-          {% endif %}
+        <div class="col-12 col-md-6 d-flex justify-content-end flex-wrap">
+          <div class="main-nav order-2 order-md-1 ms-md-auto">
+            {% if page.main_navigation %}
+              {{ page.main_navigation }}
+            {% endif %}
+          </div>
+          <div class="additional-nav order-1 order-md-2">
+            {% if page.additional_navigation %}
+              {{ page.additional_navigation }}
+            {% endif %}
+          </div>
         </div>
-      </div>
       {% endif %}
-    </div>
     <div class="row">
       {{ page.breadcrumb }}
       {{ page.highlighted }}
