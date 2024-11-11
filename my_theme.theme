@@ -23,7 +23,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 
 /**
- * テーマ設定フォームを変更し、テーマ設定を追加する.
+ * テーマ設定フォームを変更し、テーマ設定を追加する
  */
 function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
   $form['my_theme_settings'] = [
@@ -83,7 +83,7 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
   $form['branding_alignment'] = [
     '#type' => 'radios',
     '#title' => t('Branding Alignment'),
-    '#description' => t('注意: Main navigation や Additional navigation にブロックを配置すると Left に固定されます。'),
+    '#description' => t('注意: この設定は Main navigation や Additional navigation にブロックが配置されていると Left に固定されます。'),
     '#default_value' => theme_get_setting('branding_alignment'),
     '#options' => [
       'left' => t('Left'),
@@ -95,7 +95,6 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
   $form['my_theme_header_alignment'] = [
     '#type' => 'select',
     '#title' => t('Header Alignment'),
-    '#description' => t('ヘッダーにブロックを配置したときの表示位置を選択します。'),
     '#default_value' => theme_get_setting('my_theme_header_alignment'),
     '#options' => [
       'left' => t('Left'),
@@ -114,11 +113,15 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
 function my_theme_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
   // ヘッダーの配置設定を保存
   $header_alignment = $form_state->getValue('my_theme_header_alignment');
-  theme_set_setting('my_theme_header_alignment', $header_alignment);
+  
+  // 設定を保存するためにconfigオブジェクトを使用
+  \Drupal::configFactory()->getEditable('my_theme.settings')
+    ->set('my_theme_header_alignment', $header_alignment)
+    ->save();
 }
 
 /**
- * HTMLテンプレートにテーマ設定を反映する.
+ * HTMLテンプレートにテーマ設定を反映する
  */
 function my_theme_preprocess_html(array &$variables) {
   $theme = theme_get_setting('bootswatch_theme', 'my_theme');
@@ -137,7 +140,7 @@ function my_theme_preprocess_html(array &$variables) {
 }
 
 /**
- * ページテンプレートにテーマ設定を反映する.
+ * ページテンプレートにテーマ設定を反映する
  */
 function my_theme_preprocess_page(array &$variables) {
   // サイトブランディングの左寄せ・中央寄せの設定
@@ -163,3 +166,4 @@ function my_theme_preprocess_block(array &$variables) {
     $variables['main_menu'] = $menu['#items'];
   }
 }
+
