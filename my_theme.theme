@@ -18,20 +18,24 @@ function my_theme_preprocess_image_widget(array &$variables) {
   }
 }
 
-use Drupal\Core\Form\FormStateInterface;
 
-/***** テーマ選択 *****/
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Menu\MenuTreeParameters;
+
+/**
+ * テーマ設定フォームを変更し、テーマ設定を追加する.
+ */
 function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
   $form['my_theme_settings'] = [
     '#type' => 'details',
     '#title' => t('My Theme settings'),
     '#open' => TRUE,
   ];
-  
+
   $form['bootswatch_theme'] = [
     '#type' => 'select',
     '#title' => t('Bootswatch Theme'),
-    '#description' => t('Select a Bootswatch theme for this site.'),
+    '#description' => t('サイト用にBootswatchのテーマを選択してください。'),
     '#default_value' => theme_get_setting('bootswatch_theme', 'my_theme'),
     '#options' => [
       'bootstrap5' => t('Default'),
@@ -48,7 +52,7 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     ],
   ];
 
-  // Container type
+  // コンテナタイプの設定
   $form['my_theme_settings']['container_type'] = [
     '#type' => 'select',
     '#title' => t('Container Type'),
@@ -59,11 +63,11 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     ],
   ];
 
-  // Bootstrap size
+  // ブートストラップサイズの設定
   $form['my_theme_settings']['bootstrap_size'] = [
     '#type' => 'select',
     '#title' => t('Bootstrap Size'),
-    '#description' => t('Note: This setting is ignored when Container Type is Fluid.'),
+    '#description' => t('注意: この設定はコンテナタイプがFluidの場合無視されます。'),
     '#options' => [
       'xs' => t('Extra small (xs)'),
       'sm' => t('Small (sm)'),
@@ -75,10 +79,11 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#default_value' => theme_get_setting('bootstrap_size', 'my_theme'),
   ];
 
-  // Add a setting for the branding alignment
+  // ブランドの配置設定を追加
   $form['branding_alignment'] = [
     '#type' => 'radios',
     '#title' => t('Branding Alignment'),
+    '#description' => t('注意: Main navigation や Additional navigation にブロックを配置すると Left に固定されます。'),
     '#default_value' => theme_get_setting('branding_alignment'),
     '#options' => [
       'left' => t('Left'),
@@ -86,10 +91,11 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     ],
   ];
 
-    // Add a select field for header alignment.
+  // ヘッダーの配置設定を追加
   $form['my_theme_header_alignment'] = [
     '#type' => 'select',
     '#title' => t('Header Alignment'),
+    '#description' => t('ヘッダーにブロックを配置したときの表示位置を選択します。'),
     '#default_value' => theme_get_setting('my_theme_header_alignment'),
     '#options' => [
       'left' => t('Left'),
@@ -97,11 +103,23 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'right' => t('Right'),
     ],
   ];
+
+  // フォームの再構築を確実にするためのカスタムサブミットハンドラー
+  $form['#submit'][] = 'my_theme_form_system_theme_settings_submit';
 }
 
+/**
+ * カスタムサブミットハンドラー
+ */
+function my_theme_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
+  // ヘッダーの配置設定を保存
+  $header_alignment = $form_state->getValue('my_theme_header_alignment');
+  theme_set_setting('my_theme_header_alignment', $header_alignment);
+}
 
-
-/***** テーマ設定関係をhtml.html.twigに反映する *****/
+/**
+ * HTMLテンプレートにテーマ設定を反映する.
+ */
 function my_theme_preprocess_html(array &$variables) {
   $theme = theme_get_setting('bootswatch_theme', 'my_theme');
 
@@ -116,45 +134,30 @@ function my_theme_preprocess_html(array &$variables) {
   if ($theme && $theme !== 'bootstrap5') {
     $variables['#attached']['library'][] = 'my_theme/' . $theme;
   }
-
-  // Ensure that the form rebuilds to process the values.
-  $form['#submit'][] = 'my_theme_form_system_theme_settings_submit';
-
 }
 
-
-/***** テーマの設定関係をpage.html.twigに反映する *****/
-function my_theme_preprocess_page(&$variables) {
+/**
+ * ページテンプレートにテーマ設定を反映する.
+ */
+function my_theme_preprocess_page(array &$variables) {
   // サイトブランディングの左寄せ・中央寄せの設定
   $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
   $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
   $variables['branding_alignment'] = theme_get_setting('branding_alignment');
 
-  // Get the header alignment setting.
+  // ヘッダーの配置設定を取得
   $header_alignment = theme_get_setting('my_theme_header_alignment');
   
-  // Add the alignment setting as a variable to the page template.
+  // ページテンプレートに配置設定を追加
   $variables['header_alignment'] = $header_alignment;
 }
 
-
 /**
- * Custom submit handler for the theme settings form.
+ * メインメニューのデータ取得
  */
-function my_theme_form_system_theme_settings_submit($form, &$form_state) {
-  // Save the header alignment setting.
-  $header_alignment = $form_state->getValue('my_theme_header_alignment');
-  theme_set_setting('my_theme_header_alignment', $header_alignment);
-}
-
-
-
-use Drupal\Core\Menu\MenuTreeParameters;
-
-/***** メインメニューのデータ取得 *****/
-function my_theme_preprocess_block(&$variables) {
+function my_theme_preprocess_block(array &$variables) {
   if ($variables['plugin_id'] == 'system_menu_block:main') {
-    $parameters = new \Drupal\Core\Menu\MenuTreeParameters();
+    $parameters = new MenuTreeParameters();
     $menu_tree = \Drupal::menuTree()->load('main', $parameters);
     $menu = \Drupal::menuTree()->build($menu_tree);
     $variables['main_menu'] = $menu['#items'];
