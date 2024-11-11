@@ -1,17 +1,45 @@
 /* header-contentのスタイル */
 .header-content {
   display: flex !important;
-  justify-content: flex-end !important; /* 水平方向を右寄せ */
   align-items: center !important; /* 縦方向を中央に揃える */
+  justify-content: space-between !important; /* 子要素を均等に配置 */
   width: 100% !important; /* 幅を100%に設定 */
   flex-wrap: nowrap !important; /* 要素が折り返さないようにする */
 }
 
+/* 左寄せスタイル */
+.header-left-align {
+  justify-content: flex-start !important; /* 左寄せ */
+}
 
+/* 中央寄せスタイル */
+.header-center-align {
+  justify-content: center !important; /* 中央寄せ */
+}
+
+/* 右寄せスタイル */
+.header-right-align {
+  justify-content: flex-end !important; /* 右寄せ */
+}
 
 /* region-headerのスタイル */
 .region-header {
-  display: flex;
-  justify-content: flex-end !important; /* 水平方向を右寄せ */
-  align-items: center; /* 縦方向を中央に揃える */
+  display: flex !important; /* フレックスボックスを強制適用 */
+  align-items: center !important; /* 縦方向を中央に揃える */
+  flex-wrap: nowrap !important; /* 要素が折り返さないようにする */
+}
+
+/* region-headerの左寄せスタイル */
+.region-header-left-align {
+  justify-content: flex-start !important; /* 左寄せ */
+}
+
+/* region-headerの中央寄せスタイル */
+.region-header-center-align {
+  justify-content: center !important; /* 中央寄せ */
+}
+
+/* region-headerの右寄せスタイル */
+.region-header-right-align {
+  justify-content: flex-end !important; /* 右寄せ */
 }

@@ -9,11 +9,11 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: KWAiziL39uEzmOJEql_wbUP2RtqGceL3WM2CfxhMelE
+  default_config_hash: A8ydn6IOFuhLHWPnHx9oPnT1czyRQdXP0tbciC36YFI
 id: my_theme_main_menu
 theme: my_theme
 region: main_navigation
-weight: -6
+weight: -8
 provider: null
 plugin: 'system_menu_block:main'
 settings:

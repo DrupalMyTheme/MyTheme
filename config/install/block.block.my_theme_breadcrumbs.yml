@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+  default_config_hash: JnO2oyQC_DSUVHywaGY2VQUxSVxZFCcaLzbqm1xAxWc
 id: my_theme_breadcrumbs
 theme: my_theme
 region: breadcrumb

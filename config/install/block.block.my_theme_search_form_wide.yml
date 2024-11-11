@@ -7,11 +7,11 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+  default_config_hash: hrgErLsQbWFvOEiTwslF3G34M95iwTIUg0q4A_rXOD8
 id: my_theme_search_form_wide
 theme: my_theme
 region: header
-weight: -8
+weight: -5
 provider: null
 plugin: search_form_block
 settings:

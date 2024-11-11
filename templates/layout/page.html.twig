@@ -47,87 +47,89 @@
 
 <div class="{{ container_class }}-{{ bootstrap_size }}">
 
-  <header class="row">
-    <div class="header-content d-flex align-items-center justify-content-end">
-      <div class="region region-header">
-        {{ page.header }}
-      </div>
-    </div>
-    <div class="row d-flex align-items-center justify-content-between">
-      <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
-        <div class="branding-container">
-          {{ page.branding }}
+    <header class="row">
+        <div class="header-content {% if header_alignment == 'left' %}header-left-align{% elseif header_alignment == 'center' %}header-center-align{% else %}header-right-align{% endif %}">
+            <div class="region region-header {% if header_alignment == 'left' %}region-header-left-align{% elseif header_alignment == 'center' %}region-header-center-align{% else %}region-header-right-align{% endif %}">
+              {{ page.header }}
+            </div>
         </div>
-      </div>
-      {% if page.main_navigation or page.additional_navigation %}
-        <div class="col-12 col-md-6 d-flex justify-content-end flex-wrap align-items-center">
-          <div class="main-nav order-2 order-md-1 ms-md-auto">
-            {% if page.main_navigation %}
-              {{ page.main_navigation }}
+        <div class="row d-flex align-items-center justify-content-between">
+            <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
+                <div class="branding-container">
+                    {{ page.branding }}
+                </div>
+            </div>
+            {% if page.main_navigation or page.additional_navigation %}
+                <div class="col-12 col-md-6 d-flex justify-content-end flex-wrap align-items-center">
+                    <div class="main-nav order-2 order-md-1 ms-md-auto">
+                        {% if page.main_navigation %}
+                            {{ page.main_navigation }}
+                        {% endif %}
+                    </div>
+                    <div class="additional-nav order-1 order-md-2">
+                        {% if page.additional_navigation %}
+                            {{ page.additional_navigation }}
+                        {% endif %}
+                    </div>
+                </div>
             {% endif %}
-          </div>
-          <div class="additional-nav order-1 order-md-2">
-            {% if page.additional_navigation %}
-              {{ page.additional_navigation }}
+        </div>
+        <div class="row">
+            {{ page.breadcrumb }}
+            {{ page.highlighted }}
+            {{ page.help }}
+        </div>
+    </header>
+
+    <main role="main" class="row g-0">
+        <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+        {% set sidebar_first_exists = page.sidebar_first is not empty %}
+        {% set sidebar_second_exists = page.sidebar_second is not empty %}
+        {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_second_exists ? 3 : 0) %}
+        
+        {% set sidebar_first_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
+        {% set sidebar_second_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
+        {% set content_classes = 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns %}
+        
+        <div class="row g-0">
+            {% if page.sidebar_first %}
+                <div class="order-1 order-lg-1 {{ sidebar_first_classes }}">
+                    {{ page.sidebar_first }}
+                </div>
             {% endif %}
-          </div>
+            <div class="{% if page.sidebar_first and page.sidebar_second %} order-2 order-lg-2 {% elseif page.sidebar_first %} order-2 {% else %} order-1 {% endif %} {{ content_classes }}">
+                {{ page.content }}
+                {% if page.content_bottom %}
+                    {{ page.content_bottom }}
+                {% endif %}
+            </div>
+            {% if page.sidebar_second %}
+                <div class="order-3 order-lg-3 {{ sidebar_second_classes }}">
+                    {{ page.sidebar_second }}
+                </div>
+            {% endif %}
         </div>
-      {% endif %}
-    </div>
-    <div class="row">
-      {{ page.breadcrumb }}
-      {{ page.highlighted }}
-      {{ page.help }}
-    </div>
-  </header>
-  
-  <main role="main" class="row g-0">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-     {% set sidebar_first_exists = page.sidebar_first is not empty %}
-     {% set sidebar_second_exists = page.sidebar_second is not empty %}
-     {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_secondexists ? 3 : 0) %}
+    </main>
 
-     {% set sidebar_first_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
-     {% set sidebar_second_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
-     {% set content_classes = 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns %}
-    
-    <div class="row g-0">
-      {% if page.sidebar_first %}
-        <div class="order-2 order-lg-1 {{ sidebar_first_classes }}" >
-          {{ page.sidebar_first }}
+    <footer role="contentinfo">
+        <div class="row text-center">
+            {{ page.footer_top }}
         </div>
-      {% endif %}
-      <div class="order-1 order-lg-2 {{ content_classes }}">
-        {{ page.content }}
-        {% if page.content_bottom %}
-          {{ page.content_bottom }}
-        {% endif %}
-      </div>
-      {% if page.sidebar_second %}
-        <div class="order-3 {{ sidebar_second_classes }}" >
-          {{ page.sidebar_second }}
+        <div class="row g-0">
+            <div class="col-12 col-lg-4 order-lg-1">
+                {{ page.footer_first }}
+            </div>
+            <div class="col-12 col-lg-4 order-lg-2">
+                {{ page.footer_second }}
+            </div>
+            <div class="col-12 col-lg-4 order-lg-3">
+                {{ page.footer_third }}
+            </div>
         </div>
-      {% endif %}
-    </div>
-  </main>
-
-  <footer role="contentinfo">
-    <div class="row text-center">
-      {{ page.footer_top }}
-    </div>
-    <div class="row g-0">
-      <div class="col-md-4">
-        {{ page.footer_first }}
-      </div>
-      <div class="col-md-4">
-        {{ page.footer_second }}
-      </div>
-      <div class="col-md-4">
-        {{ page.footer_third }}
-      </div>
-    </div>
-    <div class="row text-center">
-      {{ page.footer_bottom }}
-    </div>
-  </footer>
+        <div class="row text-center">
+            {{ page.footer_bottom }}
+        </div>
+    </footer>
 </div>
+
+

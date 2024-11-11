@@ -7,11 +7,11 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+  default_config_hash: whwMhZe91Q6rXnHaobaSsEIetX6ufcCo6v9RN4jmvOg
 id: my_theme_powered
 theme: my_theme
-region: footer_bottom
-weight: 0
+region: footer_third
+weight: -7
 provider: null
 plugin: system_powered_by_block
 settings:

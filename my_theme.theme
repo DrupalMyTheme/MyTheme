@@ -85,6 +85,18 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'center' => t('Center'),
     ],
   ];
+
+    // Add a select field for header alignment.
+  $form['my_theme_header_alignment'] = [
+    '#type' => 'select',
+    '#title' => t('Header Alignment'),
+    '#default_value' => theme_get_setting('my_theme_header_alignment'),
+    '#options' => [
+      'left' => t('Left'),
+      'center' => t('Center'),
+      'right' => t('Right'),
+    ],
+  ];
 }
 
 
@@ -104,6 +116,10 @@ function my_theme_preprocess_html(array &$variables) {
   if ($theme && $theme !== 'bootstrap5') {
     $variables['#attached']['library'][] = 'my_theme/' . $theme;
   }
+
+  // Ensure that the form rebuilds to process the values.
+  $form['#submit'][] = 'my_theme_form_system_theme_settings_submit';
+
 }
 
 
@@ -113,8 +129,23 @@ function my_theme_preprocess_page(&$variables) {
   $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
   $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
   $variables['branding_alignment'] = theme_get_setting('branding_alignment');
+
+  // Get the header alignment setting.
+  $header_alignment = theme_get_setting('my_theme_header_alignment');
+  
+  // Add the alignment setting as a variable to the page template.
+  $variables['header_alignment'] = $header_alignment;
 }
 
+
+/**
+ * Custom submit handler for the theme settings form.
+ */
+function my_theme_form_system_theme_settings_submit($form, &$form_state) {
+  // Save the header alignment setting.
+  $header_alignment = $form_state->getValue('my_theme_header_alignment');
+  theme_set_setting('my_theme_header_alignment', $header_alignment);
+}
 
 
 
