@@ -50,6 +50,10 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'lumen' => t('Lumen'),
       'lux' => t('Lux'),
       'materia' => t('Materia'),
+      'minty' => t('Minty'),
+      'morph' => t('Morph'),
+      'pulse' => t('Pulse'),
+      'quartz' => t('Quartz'),
     ],
   ];
 

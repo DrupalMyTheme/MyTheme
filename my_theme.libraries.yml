@@ -194,6 +194,35 @@ materia:
       https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/materia/bootstrap.min.css: { integrity: sha512-2S9Do+uTmZmmJpdmAcOKdUrK/YslcvAuRfIF2ws8+BW9AvZXMRZM+o8Wq+PZrfISD6ZlIaeCWWZAdeprXIoYuQ==, crossorigin: anonymous }
       css/style.css: { }
 
+minty:
+  css:
+    theme:
+      # Bootswatch  Materia CDN https://cdnjs.com/libraries/bootswatch
+      https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/minty/bootstrap.min.css: { integrity: sha512-+/uDiVv4ZLhHnXToJFPwYK08kkG2et1rSuiitOl+0hdzmx2N6HQaMqm/7ORzr8dhco+cyGZCRxkXU7EMMYOLfQ==, crossorigin: anonymous } 
+      css/style.css: { }
+
+morph:
+  css:
+    theme:
+      # Bootswatch  Materia CDN https://cdnjs.com/libraries/bootswatch
+      https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/morph/bootstrap.min.css: { integrity: sha512-Nd3lZDftpGFIyfIz/Snlz7SzhEycjmHkNn3s2dmhrVyY55uJnTE+UiK75+CeXltD5GmU7c9n/JMDWaEwGQjowQ==, crossorigin: anonymous }
+      css/style.css: { }
+
+pulse:
+  css:
+    theme:
+      # Bootswatch  Materia CDN https://cdnjs.com/libraries/bootswatch
+      https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/pulse/bootstrap.min.css: { integrity: sha512-obkkQCe89/FCOU2KW0b5uQy371PYlf2myYmsVb9EaDeI2t+ZtSec+uSA8HdHFiiNfcLWA8p+nRM3WSHrQKpwuA==, crossorigin: anonymous }
+      css/style.css: { }
+
+quartz:
+  css:
+    theme:
+      # Bootswatch  Materia CDN https://cdnjs.com/libraries/bootswatch
+      https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/quartz/bootstrap.min.css: { integrity: sha512-K+FEHZnRHFnQ6iahLNQUCHNpKDHkrYxHZmzFjOJteRPjBhjLmOgJgGJsIYBDOS1wYxcSVvAcfg3ZFpm6tnbhOA==, crossorigin: anonymous }
+      css/style.css: { }
+
+# Navbar
 custom-navbar:
   version: 1.x
   css:
@@ -204,12 +233,14 @@ custom-navbar:
   dependencies:
     - core/jquery
 
+# Site Branding
 custom-branding:
   version: 1.x
   css:
     theme:
       css/custom-branding.css: {}
-      
+
+# Headder      
 custom-header:
   version: 1.x
   css:
