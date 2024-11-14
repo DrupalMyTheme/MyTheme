@@ -1,3 +1,17 @@
+/* ナビゲーションスタイル */
+.navigation {
+  display: flex;
+  align-items: center; /* 縦方向を中央に揃える */
+  justify-content: flex-end; /* 横方向を右寄せ */
+}
+
+/* ナビゲーションバーのスタイル */
+.navbar {
+  display: flex; 
+  align-items: center; /* 縦方向を中央に揃える */
+  justify-content: space-between; /* スペースを均等に配置 */
+}
+
 /* ドロップダウンメニューの初期表示を非表示にする */
 .navbar .dropdown-menu {
   display: none;
@@ -7,65 +21,6 @@
 .navbar .dropdown.show .dropdown-menu {
   display: block;
 }
-
-/* ナビゲーションスタイル */
-.navigation {
-  display: flex;
-  align-items: center; /* 縦方向を中央に揃える */
-  justify-content: flex-end; /* 横方向を右寄せ */
-}
-
-
-
-/* カスタムプロパティ（ルート変数） */
-:root {
-  --navbar-bg-color: var(--bs-primary);
-  --navbar-text-color: var(--bs-secondary-color);
-}
-
-/* ナビゲーションバーのスタイル */
-.navbar {
-  background-color: var(--navbar-bg-color);
-  display: flex; 
-  align-items: center; /* 縦方向を中央に揃える */
-  justify-content: space-between; /* スペースを均等に配置 */
-}
-
-/* ナビゲーションリンクのスタイル */
-.navbar .nav-link {
-  color: var(--navbar-text-color) !important;
-  background-color: var(--navbar-bg-color); /* 初期背景色を指定 */
-}
-
-/* ホバー時、フォーカス時、アクティブ時のスタイルを固定 */
-.navbar .nav-link:hover,
-.navbar .nav-link:focus,
-.navbar .nav-link:active,
-.navbar .nav-link.active {
-  color: var(--navbar-text-color) !important;
-  background-color: var(--navbar-bg-color) !important;
-}
-
-/* ドロップダウンメニューのスタイル */
-.navbar .dropdown-menu {
-  background-color: var(--navbar-bg-color) !important;
-  color: var(--navbar-text-color);
-}
-
-/* ドロップダウンアイテムのスタイル */
-.navbar .dropdown-item {
-  background-color: var(--navbar-bg-color);
-  color: var(--navbar-text-color);
-}
-
-/* ドロップダウンアイテムのホバー時のスタイル */
-.navbar .dropdown-item:hover {
-  /*  color: var(--bs-dark); */
-  /*  background-color: var(--bs-light); */
-  background-color: var(--navbar-bg--color);
-  color: var(--navbar-text-color);
-}
-
 
 
 /* メインナビゲーションのスタイル */
