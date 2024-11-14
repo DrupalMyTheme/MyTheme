@@ -32,6 +32,7 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#open' => TRUE,
   ];
 
+  // Bootswatchテーマの設定
   $form['bootswatch_theme'] = [
     '#type' => 'select',
     '#title' => t('Bootswatch Theme'),
@@ -91,7 +92,8 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     ],
   ];
 
-  // ヘッダーの配置設定を追加
+
+    // ヘッダーの配置設定を追加
   $form['my_theme_header_alignment'] = [
     '#type' => 'select',
     '#title' => t('Header Alignment'),
@@ -101,6 +103,20 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'center' => t('Center'),
       'right' => t('Right'),
     ],
+  ];
+
+  // ナビゲーションバーのタイプ設定を追加
+  $form['my_theme_settings']['navbar_type'] = [
+    '#type' => 'select',
+    '#title' => t('Navbar Type'),
+    '#default_value' => theme_get_setting('navbar_type', 'my_theme'),
+    '#options' => [
+      'Navbar_1' => t('Navbar 1 (Primary)'),
+      'Navbar_2' => t('Navbar 2 (Dark)'),
+      'Navbar_3' => t('Navbar 3 (Light)'),
+      'Navbar_4' => t('Navbar 4 (Body Tertiary)'),
+    ],
+    '#description' => t('ナビゲーションバーのタイプを選択してください。'),
   ];
 
   // フォームの再構築を確実にするためのカスタムサブミットハンドラー
@@ -113,10 +129,13 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
 function my_theme_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
   // ヘッダーの配置設定を保存
   $header_alignment = $form_state->getValue('my_theme_header_alignment');
-  
+  // ナビゲーションバーのタイプ設定を保存
+  $navbar_type = $form_state->getValue('navbar_type');
+
   // 設定を保存するためにconfigオブジェクトを使用
   \Drupal::configFactory()->getEditable('my_theme.settings')
     ->set('my_theme_header_alignment', $header_alignment)
+    ->set('navbar_type', $navbar_type)
     ->save();
 }
 
@@ -153,10 +172,16 @@ function my_theme_preprocess_page(array &$variables) {
   
   // ページテンプレートに配置設定を追加
   $variables['header_alignment'] = $header_alignment;
+
+  // Get the navbar type setting from the theme settings.
+  $navbar_type = theme_get_setting('navbar_type');
+
+  // Pass the navbar type to the template variables.
+  $variables['navbar_type'] = $navbar_type;
 }
 
 /**
- * メインメニューのデータ取得
+ * ブロックテンプレートにテーマ設定を反映する
  */
 function my_theme_preprocess_block(array &$variables) {
   if ($variables['plugin_id'] == 'system_menu_block:main') {
@@ -165,5 +190,10 @@ function my_theme_preprocess_block(array &$variables) {
     $menu = \Drupal::menuTree()->build($menu_tree);
     $variables['main_menu'] = $menu['#items'];
   }
-}
 
+  // Get the navbar type setting from the theme settings.
+  $navbar_type = theme_get_setting('navbar_type');
+
+  // Pass the navbar type to the block template variables.
+  $variables['navbar_type'] = $navbar_type;
+}

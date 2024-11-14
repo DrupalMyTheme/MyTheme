@@ -1,10 +1,30 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+{% set navbar_classes = {
+  'Navbar_1': 'navbar navbar-expand-lg bg-primary',
+  'Navbar_2': 'navbar navbar-expand-lg bg-dark',
+  'Navbar_3': 'navbar navbar-expand-lg bg-light',
+  'Navbar_4': 'navbar navbar-expand-lg bg-body-tertiary'
+} %}
+{% set data_bs_theme = navbar_type == 'Navbar_3' ? 'light' : 'dark' %}
+{% set data_bs_target = {
+  'Navbar_1': '#navbarColor01',
+  'Navbar_2': '#navbarColor02',
+  'Navbar_3': '#navbarColor03',
+  'Navbar_4': '#navbarColor04'
+}[navbar_type] %}
+{% set aria_controls = {
+  'Navbar_1': 'navbarColor01',
+  'Navbar_2': 'navbarColor02',
+  'Navbar_3': 'navbarColor03',
+  'Navbar_4': 'navbarColor04'
+}[navbar_type] %}
+
+
+<nav class="{{ navbar_classes[navbar_type] }}" data-bs-theme="{{ data_bs_theme }}">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="{{ data_bs_target }}" aria-controls="{{ aria_controls }}" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+    <div class="collapse navbar-collapse" id="{{ aria_controls }}">
       <ul class="navbar-nav me-auto">
         {% for item in main_menu %}
           {% if item.below %}
@@ -26,7 +46,6 @@
           {% endif %}
         {% endfor %}
       </ul>
-
     </div>
   </div>
 </nav>
