@@ -33,3 +33,17 @@ blockquote cite {
     color: var(text-secondary);
     font-size: 0.9em;
 }
+
+
+
+header {
+    background-color: var(--bs-primary);
+}
+
+body {
+    background-color: var(--bs-secondary);
+}
+
+footer {
+    background-color: black;
+}

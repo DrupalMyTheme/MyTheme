@@ -1,24 +1,29 @@
+/* ドロップダウンメニューの初期表示を非表示にする */
 .navbar .dropdown-menu {
   display: none;
 }
+
+/* ドロップダウンが表示状態のときにメニューを表示する */
 .navbar .dropdown.show .dropdown-menu {
   display: block;
 }
 
-/* Navigation styles */
+/* ナビゲーションスタイル */
 .navigation {
   display: flex;
   align-items: center; /* 縦方向を中央に揃える */
   justify-content: flex-end; /* 横方向を右寄せ */
 }
 
+
+
+/* カスタムプロパティ（ルート変数） */
 :root {
-/*  --navbar-bg-color: var(--bs-primary); */
-/*  --navbar-text-color: var(--bs-light); */
-  --navbar-bg-color: var(bg-body-tertiary);
-  --navbar-text-color: var(text-primary);
+  --navbar-bg-color: var(--bs-primary);
+  --navbar-text-color: var(--bs-secondary-color);
 }
 
+/* ナビゲーションバーのスタイル */
 .navbar {
   background-color: var(--navbar-bg-color);
   display: flex; 
@@ -26,8 +31,9 @@
   justify-content: space-between; /* スペースを均等に配置 */
 }
 
+/* ナビゲーションリンクのスタイル */
 .navbar .nav-link {
-  color: var(--navbar-text-color);
+  color: var(--navbar-text-color) !important;
   background-color: var(--navbar-bg-color); /* 初期背景色を指定 */
 }
 
@@ -40,33 +46,38 @@
   background-color: var(--navbar-bg-color) !important;
 }
 
+/* ドロップダウンメニューのスタイル */
 .navbar .dropdown-menu {
-  background-color: var(--navbar-bg-color);
+  background-color: var(--navbar-bg-color) !important;
   color: var(--navbar-text-color);
 }
 
+/* ドロップダウンアイテムのスタイル */
 .navbar .dropdown-item {
   background-color: var(--navbar-bg-color);
   color: var(--navbar-text-color);
 }
 
+/* ドロップダウンアイテムのホバー時のスタイル */
 .navbar .dropdown-item:hover {
-/*  color: var(--bs-dark); */
-/*  background-color: var(--bs-light); */
-  background-color: var(--navbar-text-color);
+  /*  color: var(--bs-dark); */
+  /*  background-color: var(--bs-light); */
+  background-color: var(--navbar-bg--color);
   color: var(--navbar-text-color);
 }
 
+
+
 /* メインナビゲーションのスタイル */
-.main-nav { 
-  display: flex; 
+.main-nav {
+  display: flex;
   align-items: center; /* 縦方向を中央に揃える */
   justify-content: flex-end; /* メインメニューを右寄せにする */
-  flex: 1; /* スペースを均等に割り当てる */ 
+  flex: 1; /* スペースを均等に割り当てる */
 }
 
-/* アディショナルナビゲーションのスタイル */ 
-.additional-nav { 
-  display: flex; 
+/* アディショナルナビゲーションのスタイル */
+.additional-nav {
+  display: flex;
   align-items: center; /* 縦方向を中央に揃える */
 }
