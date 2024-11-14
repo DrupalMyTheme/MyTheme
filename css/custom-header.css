@@ -5,6 +5,7 @@
   justify-content: space-between !important; /* 子要素を均等に配置 */
   width: 100% !important; /* 幅を100%に設定 */
   flex-wrap: nowrap !important; /* 要素が折り返さないようにする */
+  gap: 10px; /* 小要素間のギャップを追加 */
 }
 
 /* 左寄せスタイル */
@@ -27,6 +28,7 @@
   display: flex !important; /* フレックスボックスを強制適用 */
   align-items: center !important; /* 縦方向を中央に揃える */
   flex-wrap: nowrap !important; /* 要素が折り返さないようにする */
+  gap: 10px; /* 小要素間のギャップを追加 */
 }
 
 /* region-headerの左寄せスタイル */

@@ -55,7 +55,7 @@
         </div>
         <div class="row d-flex align-items-center justify-content-between">
             <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
-                <div class="branding-container">
+                <div class="branding-container px-3 py-4">
                     {{ page.branding }}
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 </div>
             {% endif %}
         </div>
-        <div class="row">
+        <div class="row" pb-5>
             {{ page.breadcrumb }}
             {{ page.highlighted }}
             {{ page.help }}
