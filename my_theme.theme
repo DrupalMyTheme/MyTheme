@@ -184,6 +184,7 @@ function my_theme_preprocess_page(array &$variables) {
  * ブロックテンプレートにテーマ設定を反映する
  */
 function my_theme_preprocess_block(array &$variables) {
+  // メインメニューのデータ取得
   if ($variables['plugin_id'] == 'system_menu_block:main') {
     $parameters = new MenuTreeParameters();
     $menu_tree = \Drupal::menuTree()->load('main', $parameters);
@@ -191,9 +192,17 @@ function my_theme_preprocess_block(array &$variables) {
     $variables['main_menu'] = $menu['#items'];
   }
 
-  // Get the navbar type setting from the theme settings.
+  // ナビゲーションバーのタイプ設定を取得
   $navbar_type = theme_get_setting('navbar_type');
-
-  // Pass the navbar type to the block template variables.
+  // テンプレート変数にナビゲーションバーのタイプを渡す
   $variables['navbar_type'] = $navbar_type;
+
+  // 検索ブロックのデータ取得
+  if ($variables['plugin_id'] == 'search_form_block') {
+    // Bootswatchテーマ設定を取得
+    $bootswatch_theme = theme_get_setting('bootswatch_theme', 'my_theme');
+
+    // テンプレート変数にBootswatchテーマを渡す
+    $variables['bootswatch_theme'] = $bootswatch_theme;
+  }
 }
