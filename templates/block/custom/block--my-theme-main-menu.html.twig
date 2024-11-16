@@ -1,16 +1,23 @@
+{# ナビゲーションバーのクラスを設定。選択されたnavbar_typeに応じてクラスを変更 #}
 {% set navbar_classes = {
   'Navbar_1': 'navbar navbar-expand-lg bg-primary',
   'Navbar_2': 'navbar navbar-expand-lg bg-dark',
   'Navbar_3': 'navbar navbar-expand-lg bg-light',
   'Navbar_4': 'navbar navbar-expand-lg'
 }[navbar_type] %}
+
+{# Bootstrapのテーマ属性を設定。Navbar_3のみ'light'テーマ、それ以外は'dark'テーマを適用 #}
 {% set data_bs_theme = navbar_type == 'Navbar_3' ? 'light' : 'dark' %}
+
+{# トグルボタンで使用するターゲットIDをnavbar_typeに基づいて設定 #}
 {% set data_bs_target = {
   'Navbar_1': '#navbarColor01',
   'Navbar_2': '#navbarColor02',
   'Navbar_3': '#navbarColor03',
   'Navbar_4': '#navbarColor04'
 }[navbar_type] %}
+
+{# 折りたたみメニューのaria-controls属性を設定。data_bs_targetと連動 #}
 {% set aria_controls = {
   'Navbar_1': 'navbarColor01',
   'Navbar_2': 'navbarColor02',
@@ -18,33 +25,49 @@
   'Navbar_4': 'navbarColor04'
 }[navbar_type] %}
 
+<nav class="{{ navbar_classes }}" data-bs-theme="{{ data_bs_theme }}"> {# ナビゲーションバー全体の構造とテーマ属性を適用 #}
+  <div class="container-fluid"> {# フル幅のコンテナを使用してコンテンツをラップ #}
 
-<nav class="{{ navbar_classes }}" data-bs-theme="{{ data_bs_theme }}">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="{{ data_bs_target }}" aria-controls="{{ aria_controls }}" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    {# 折りたたみトグルボタンを設定。レスポンシブ時にメニューの開閉を切り替えるボタン #}
+    <button class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="{{ data_bs_target }}" 
+            aria-controls="{{ aria_controls }}" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span> {# トグルボタンのアイコンを表示 #}
     </button>
+
+    {# 折りたたみ可能なナビゲーションメニューの領域 #}
     <div class="collapse navbar-collapse" id="{{ aria_controls }}">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto"> {# メニューアイテムを左寄せ（me-auto）で配置 #}
+
+        {# メニューアイテムのループ処理 #}
         {% for item in main_menu %}
-          {% if item.below %}
-            <li class="nav-item dropdown {{ item.in_active_trail ? 'active' : '' }}">
-              <a class="nav-link dropdown-toggle" href="{{ item.url }}" role="button" aria-haspopup="true" aria-expanded="false">
-                {{ item.title }}
+          {% if item.below %} {# サブメニューが存在する場合 #}
+            <li class="nav-item dropdown {{ item.in_active_trail ? 'active' : '' }}"> {# ドロップダウンメニューのアイテム #}
+              <a class="nav-link dropdown-toggle" 
+                 href="{{ item.url }}" 
+                 role="button" 
+                 aria-haspopup="true" 
+                 aria-expanded="false">
+                {{ item.title }} {# 親メニューのタイトルを表示 #}
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu"> {# サブメニューのリスト #}
                 {% for sub_item in item.below %}
-                  <li><a class="dropdown-item" href="{{ sub_item.url }}">{{ sub_item.title }}</a></li>
+                  <li><a class="dropdown-item" href="{{ sub_item.url }}">{{ sub_item.title }}</a></li> {# サブメニューのアイテム #}
                 {% endfor %}
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div> {# サブメニュー間の区切り線 #}
               </ul>
             </li>
-          {% else %}
-            <li class="nav-item {{ item.in_active_trail ? 'active' : '' }}">
-              <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
+          {% else %} {# サブメニューが存在しない通常のメニューアイテム #}
+            <li class="nav-item {{ item.in_active_trail ? 'active' : '' }}"> {# アクティブ状態の場合に'active'クラスを追加 #}
+              <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a> {# メニューアイテムのリンクとタイトル #}
             </li>
           {% endif %}
         {% endfor %}
+
       </ul>
     </div>
   </div>
