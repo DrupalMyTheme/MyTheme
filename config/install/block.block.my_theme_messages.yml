@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: _t3RyeKutltdQnlIBK4oCfHWUAHqdaflJvyRIzFn6dw
+  default_config_hash: Sit1ZREx1MtNtXrT5qA3xDr9FRPntXPHqG0vdooDqcI
 id: my_theme_messages
 theme: my_theme
 region: highlighted

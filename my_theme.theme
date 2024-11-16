@@ -39,7 +39,6 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#description' => t('サイト用にBootswatchのテーマを選択してください。'),
     '#default_value' => theme_get_setting('bootswatch_theme', 'my_theme'),
     '#options' => [
-      'bootstrap5' => t('Default'),
       'cerulean' => t('Cerulean'),
       'cosmo' => t('Cosmo'),
       'cyborg' => t('Cyborg'),
@@ -54,6 +53,17 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'morph' => t('Morph'),
       'pulse' => t('Pulse'),
       'quartz' => t('Quartz'),
+      'sandstone' => t('Sandstone'),
+      'simplex' => t('Simplex'),
+      'sketchy' => t('Sketchy'),
+      'slate' => t('Slate'),
+      'solar' => t('Solar'),
+      'spacelab' => t('Spacelab'),
+      'superhero' => t('Superhero'),
+      'united' => t('United'),
+      'vapor' => t('Vapor'),
+      'yeti' => t('Yeti'),
+      'zephyr' => t('Zephyr'),
     ],
   ];
 
@@ -91,8 +101,8 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#description' => t('注意: この設定は Main navigation や Additional navigation にブロックが配置されていると Left に固定されます。'),
     '#default_value' => theme_get_setting('branding_alignment'),
     '#options' => [
-      'left' => t('Left'),
-      'center' => t('Center'),
+      'left' => t('左'),
+      'center' => t('中央'),
     ],
   ];
 
@@ -101,11 +111,12 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
   $form['my_theme_header_alignment'] = [
     '#type' => 'select',
     '#title' => t('Header Alignment'),
+    '#description' => t('注意: この設定は Header にブロックが配置されているときだけ有効です。'),
     '#default_value' => theme_get_setting('my_theme_header_alignment'),
     '#options' => [
-      'left' => t('Left'),
-      'center' => t('Center'),
-      'right' => t('Right'),
+      'left' => t('左'),
+      'center' => t('中央'),
+      'right' => t('右'),
     ],
   ];
 
@@ -118,7 +129,7 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'Navbar_1' => t('Navbar 1 (Primary)'),
       'Navbar_2' => t('Navbar 2 (Dark)'),
       'Navbar_3' => t('Navbar 3 (Light)'),
-      'Navbar_4' => t('Navbar 4 (Transparent'),
+      'Navbar_4' => t('Navbar 4 (透過)'),
     ],
     '#description' => t('ナビゲーションバーのタイプを選択してください。'),
   ];

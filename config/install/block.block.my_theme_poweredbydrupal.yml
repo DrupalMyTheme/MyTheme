@@ -1,4 +1,4 @@
-uuid: 6dd991de-6a58-4c84-bdae-13b013fe0224
+uuid: 1b62373a-3d4f-49bb-bd43-ce5a051697f3
 langcode: ja
 status: true
 dependencies:
@@ -6,11 +6,9 @@ dependencies:
     - system
   theme:
     - my_theme
-_core:
-  default_config_hash: whwMhZe91Q6rXnHaobaSsEIetX6ufcCo6v9RN4jmvOg
-id: my_theme_powered
+id: my_theme_poweredbydrupal
 theme: my_theme
-region: footer_third
+region: footer_bottom
 weight: -7
 provider: null
 plugin: system_powered_by_block

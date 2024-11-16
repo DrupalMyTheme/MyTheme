@@ -1,5 +1,5 @@
 _core:
-  default_config_hash: qiPWHoLaHfTexB3cyu09Ii145tcP66O80M0joH5l110
+  default_config_hash: NAxm_yOlW8rDxcxRVuXgP7XCKOSlZg-g9982qH94mLo
 features:
   node_user_picture: 1
   comment_user_picture: 1
@@ -10,8 +10,9 @@ logo:
 favicon:
   use_default: 1
 container_type: container
-bootstrap_size: md
-bootswatch_theme: cerulean
-branding_alignment: left
+bootstrap_size: xl
+bootswatch_theme: pulse
+branding_alignment: center
 header_alignment: right
 my_theme_header_alignment: right
+navbar_type: Navbar_1

@@ -9,10 +9,10 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: zy7XHWKpe_4_Ca4uMO-V6p2aKZijm-6gXhRDiGiSjJQ
+  default_config_hash: w6vdECzWHAU_8F-N5IswH3hu6DRJRbbIufMecH4hu7o
 id: my_theme_account_menu
 theme: my_theme
-region: sidebar_second
+region: footer_third
 weight: -7
 provider: null
 plugin: 'system_menu_block:account'

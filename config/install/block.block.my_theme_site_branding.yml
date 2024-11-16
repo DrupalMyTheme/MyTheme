@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: KswZ_e6J8B1CKHFXvFm4s7tutUgmKifnCojzFoctD4c
+  default_config_hash: tzxbHBX4t9xy5OlWctqlm67bR_9x_tS14pFdCbUkJ4w
 id: my_theme_site_branding
 theme: my_theme
 region: branding

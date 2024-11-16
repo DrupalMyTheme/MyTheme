@@ -7,11 +7,11 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: 4rT4fWfOLd8t2aHBo6vad2-_asV-GyUS06C7Ndi44jY
+  default_config_hash: Zu10WS6WPBQfHCc2EfHYSBbXdHQLDnA-OhhT8bBgojQ
 id: my_theme_syndicate
 theme: my_theme
-region: content_bottom
-weight: -6
+region: footer_second
+weight: -7
 provider: null
 plugin: node_syndicate_block
 settings:

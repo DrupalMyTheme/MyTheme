@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: oXSkwrBErV2CC05HOErruYeZu5ARr3VDohaVyD_71Cc
+  default_config_hash: PBZmozytSJ0Z8ohpbjGVEUBhhm8lV6Ne3KNs8hAte38
 id: my_theme_help
 theme: my_theme
 region: help

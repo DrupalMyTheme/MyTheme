@@ -1,0 +1,25 @@
+uuid: eeac5057-54b5-4b29-8447-12aaa751dbde
+langcode: ja
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - my_theme
+id: my_theme_futsuta
+theme: my_theme
+region: footer_first
+weight: -7
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: フッター
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

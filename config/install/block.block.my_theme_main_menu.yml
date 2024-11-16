@@ -9,11 +9,11 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: A8ydn6IOFuhLHWPnHx9oPnT1czyRQdXP0tbciC36YFI
+  default_config_hash: NzgsKoOwJf-ZZartXLYcRXp-yoTXnfwB1E1RiaFal6c
 id: my_theme_main_menu
 theme: my_theme
-region: main_navigation
-weight: -8
+region: header
+weight: -7
 provider: null
 plugin: 'system_menu_block:main'
 settings:
@@ -22,6 +22,6 @@ settings:
   label_display: '0'
   provider: system
   level: 1
-  depth: 2
+  depth: 3
   expand_all_items: true
 visibility: {  }
