@@ -105,7 +105,6 @@ user:
       css/components/user.css:
         weight: -10
 
-
 # 共通 css
 style:
   css:
