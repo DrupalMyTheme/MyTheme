@@ -252,3 +252,11 @@ custom-blockquote:
   css:
     theme:
       css/custom-blockquote.css: {}
+
+# view-liset
+custom-view-list:
+  version: 1.x
+  css:
+    theme:
+      css/custom-view-list.css: {}
+
