@@ -48,73 +48,71 @@
   'Navbar_2': 'bg-dark',
   'Navbar_3': 'bg-light',
   'Navbar_4': ''
-}[navbar_type] %}
+}[navbar_type] %} {# ナビバーの種類に応じたクラスを設定 #}
 
 <div class="{{ container_class }}-{{ bootstrap_size }}">
 
     <header class="row g-0">
-        <div class="{{ navbar_classes }} px-2">
+        <div class="{{ navbar_classes }} px-2"> {# ナビバーに適用するクラスを追加 #}
             <div class="header-content {% if header_alignment == 'left' %}header-left-align{% elseif header_alignment == 'center' %}header-center-align{% else %}header-right-align{% endif %}">
+                {# ヘッダーの配置に応じたクラスを動的に設定 #}
                 <div class="region region-header {% if header_alignment == 'left' %}region-header-left-align{% elseif header_alignment == 'center' %}region-header-center-align{% else %}region-header-right-align{% endif %}">
-                    {{ page.header }}
+                    {# ヘッダーリージョンのクラスも配置に応じて変更 #}
+                    {{ page.header }} {# ヘッダーのコンテンツを出力 #}
                 </div>
             </div>
         </div>
         <div class="row d-flex align-items-center justify-content-between">
             <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
                 <div class="branding-container p-3">
-                    {{ page.branding }}
+                    {{ page.branding }} {# ブランドロゴや名称などの出力 #}
                 </div>
             </div>
             {% if page.main_navigation or page.additional_navigation %}
                 <div class="col-12 col-md-6 d-flex justify-content-end flex-wrap align-items-center">
-                    <div class="main-nav order-2 order-md-1 ms-md-auto">
-                        {% if page.main_navigation %}
-                            {{ page.main_navigation }}
-                        {% endif %}
-                    </div>
-                    <div class="additional-nav order-1 order-md-2">
-                        {% if page.additional_navigation %}
-                            {{ page.additional_navigation }}
-                        {% endif %}
-                    </div>
+                    {% if page.main_navigation %}
+                        <div class="main-nav order-2 order-md-1 ms-md-auto">
+                            {{ page.main_navigation }} {# メインナビゲーションの出力 #}
+                        </div>
+                    {% endif %}
+                    {% if page.additional_navigation %}
+                        <div class="additional-nav order-1 order-md-2">
+                            {{ page.additional_navigation }} {# 追加ナビゲーションの出力 #}
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
-        <div class="row" pb-5>
-            {{ page.breadcrumb }}
-            {{ page.highlighted }}
-            {{ page.help }}
+        <div class="row pb-5">
+            {{ page.breadcrumb }} {# パンくずリストの出力 #}
+            {{ page.highlighted }} {# 強調エリア（例: アラートや通知）の出力 #}
+            {{ page.help }} {# ヘルプコンテンツの出力 #}
         </div>
     </header>
 
     <main role="main" class="row g-0">
-        <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-        {% set sidebar_first_exists = page.sidebar_first is not empty %}
-        {% set sidebar_second_exists = page.sidebar_second is not empty %}
-        {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_second_exists ? 3 : 0) %}
-        
-        {% set sidebar_first_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
-        {% set sidebar_second_classes = 'col-12 col-' ~ bootstrap_size ~ '-3' %}
-        {% set content_classes = 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns %}
+        <a id="main-content" tabindex="-1"></a> {# メインコンテンツのアンカーポイント #}
+        {% set sidebar_first_exists = page.sidebar_first is not empty %} {# サイドバー1の存在確認 #}
+        {% set sidebar_second_exists = page.sidebar_second is not empty %} {# サイドバー2の存在確認 #}
+        {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_second_exists ? 3 : 0) %} {# コンテンツエリアのカラム数を計算 #}
         
         <div class="row">
-            {% if page.sidebar_first %}
-                <div class="p-3 order-1 order-lg-1 {{ sidebar_first_classes }}">
-                    {{ page.sidebar_first }}
+            {% if sidebar_first_exists %}
+                <div class="p-3 order-1 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
+                    {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
                 </div>
             {% endif %}
-            <div class="p-3 {% if page.sidebar_first and page.sidebar_second %} order-2 order-lg-2 {% elseif page.sidebar_first %} order-2 {% else %} order-1 {% endif %} {{ content_classes }}">
-                {{ page.content }}
+            <div class="p-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
+                {{ page.content }} {# メインコンテンツの出力 #}
                 {% if page.content_bottom %}
                     <div class="p-3">
-                        {{ page.content_bottom }}
+                        {{ page.content_bottom }} {# コンテンツ下部の追加セクション #}
                     </div>
                 {% endif %}
             </div>
-            {% if page.sidebar_second %}
-                <div class="p-3 order-3 order-lg-3 {{ sidebar_second_classes }}">
-                    {{ page.sidebar_second }}
+            {% if sidebar_second_exists %}
+                <div class="p-3 order-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
+                    {{ page.sidebar_second }} {# サイドバー2のコンテンツを出力 #}
                 </div>
             {% endif %}
         </div>
@@ -123,26 +121,20 @@
     <footer role="contentinfo" class="g-0">
         <div class="row p-3 footer-top">
             <div class="d-flex justify-content-center">
-                {{ page.footer_top }}
+                {{ page.footer_top }} {# フッター上部のコンテンツ #}
             </div>
         </div>
         <div class="row p-3 footer-middle">
-            <div class="col-12 col-lg-4 order-lg-1 d-flex justify-content-center">
-                {{ page.footer_first }}
-            </div>
-            <div class="col-12 col-lg-4 order-lg-2 d-flex justify-content-center">
-                {{ page.footer_second }}
-            </div>
-            <div class="col-12 col-lg-4 order-lg-3 d-flex justify-content-center">
-                {{ page.footer_third }}
-            </div>
+            {% for region in ['footer_first', 'footer_second', 'footer_third'] %}
+                <div class="col-12 col-lg-4 d-flex justify-content-center">
+                    {{ attribute(page, region) }} {# フッターの各リージョンをループで出力 #}
+                </div>
+            {% endfor %}
         </div>
         <div class="row p-3 footer-bottom">
             <div class="d-flex justify-content-center">
-                {{ page.footer_bottom }}
+                {{ page.footer_bottom }} {# フッター下部のコンテンツ #}
             </div>
         </div>
     </footer>
 </div>
-
-
