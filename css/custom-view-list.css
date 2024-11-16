@@ -1,4 +1,4 @@
 /* views-row クラスでリストの間隔を調整 */
 .view-content .views-row {
-  margin-bottom: 2rem; /* 下に間隔を追加 */
+  margin-bottom: 3rem; /* 下に間隔を追加 */
 }
