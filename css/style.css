@@ -1,36 +1,12 @@
-/***** Blockquote *****/
-blockquote {
-    position: relative;
-    padding: 10px 15px 10px 40px;
-    box-sizing: border-box;
-    font-style: italic;
-    color: var(text-secondary);
-    border-left: 4px solid rgb(145, 145, 145);
-    box-shadow: 0 2px 4px rgb(105, 105, 105);
+body {
 }
 
-blockquote:before{
-    display: inline-block;
-    position: absolute;
-    top: 7px;
-    left: 0;
-    content: "“";
-    font-family: sans-serif;
-    color: var(text-secondary);
-    font-size: 45px;
-    line-height: 1;
+header {
 }
 
-blockquote p {
-    padding: 0;
-    margin: 7px 0;
-    line-height: 1.7;
+main {
 }
 
-blockquote cite {
-    display: block;
-    text-align: right;
-    color: var(text-secondary);
-    font-size: 0.9em;
+footer {
+    background-color: black;
 }
-

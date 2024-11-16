@@ -3,7 +3,7 @@
   'Navbar_2': 'navbar navbar-expand-lg bg-dark',
   'Navbar_3': 'navbar navbar-expand-lg bg-light',
   'Navbar_4': 'navbar navbar-expand-lg'
-} %}
+}[navbar_type] %}
 {% set data_bs_theme = navbar_type == 'Navbar_3' ? 'light' : 'dark' %}
 {% set data_bs_target = {
   'Navbar_1': '#navbarColor01',
@@ -19,7 +19,7 @@
 }[navbar_type] %}
 
 
-<nav class="{{ navbar_classes[navbar_type] }}" data-bs-theme="{{ data_bs_theme }}">
+<nav class="{{ navbar_classes }}" data-bs-theme="{{ data_bs_theme }}">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="{{ data_bs_target }}" aria-controls="{{ aria_controls }}" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

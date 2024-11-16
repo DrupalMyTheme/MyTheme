@@ -246,3 +246,10 @@ custom-header:
   css:
     theme:
       css/custom-header.css: {}
+
+# blockquote      
+custom-blockquote:
+  version: 1.x
+  css:
+    theme:
+      css/custom-blockquote.css: {}
