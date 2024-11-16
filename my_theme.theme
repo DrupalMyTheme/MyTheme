@@ -118,7 +118,7 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'Navbar_1' => t('Navbar 1 (Primary)'),
       'Navbar_2' => t('Navbar 2 (Dark)'),
       'Navbar_3' => t('Navbar 3 (Light)'),
-      'Navbar_4' => t('Navbar 4 (Body Tertiary)'),
+      'Navbar_4' => t('Navbar 4 (Transparent'),
     ],
     '#description' => t('ナビゲーションバーのタイプを選択してください。'),
   ];
