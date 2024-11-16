@@ -1,9 +1,35 @@
+{# 検索フォームの開始。Bootstrapクラスを活用し、スタイルを適用 #}
 <form class="d-flex gap-2" action="/search/node" method="get">
+  
+  {# 検索フィールドのラッパー #}
   <div>
+    {# 視覚的に非表示のラベル（アクセシビリティ対応） #}
     <label for="edit-keys" class="visually-hidden">Search</label>
-    <input class="form-control my-2" type="search" placeholder="Search" data-drupal-selector="edit-keys" id="edit-keys" name="keys" aria-label="Search">
+
+    {# 検索入力フィールド。フォーム全体のスタイルはBootstrapのクラスを使用 #}
+    <input 
+      class="form-control my-2" {# 入力フィールドのスタイル。上下の余白を'my-2'で指定 #}
+      type="search" {# 入力タイプを'search'に指定 #}
+      placeholder="Search" {# ユーザーに検索フィールドでの入力内容を示唆するプレースホルダー #}
+      data-drupal-selector="edit-keys" {# Drupalのフォーム要素識別用データ属性 #}
+      id="edit-keys" {# フィールドのユニークなID #}
+      name="keys" {# フィールドの名前。送信時にクエリ文字列のキーとして使用 #}
+      aria-label="Search" {# スクリーンリーダー用の説明を提供 #}
+    >
   </div>
+
+  {# 検索ボタンのラッパー #}
   <div>
-    <button class="btn btn-primary my-2 js-form-submit form-submit" type="submit" data-drupal-selector="edit-submit" id="edit-submit">Search</button>
+    {# 検索実行ボタン。フォームの送信をトリガーする #}
+    <button 
+      class="btn btn-primary my-2 js-form-submit form-submit" {# ボタンの外観を'btn-primary'で指定。上下に余白 #}
+      type="submit" {# ボタンのタイプを'submit'に設定 #}
+      data-drupal-selector="edit-submit" {# Drupalでのフォーム要素識別用データ属性 #}
+      id="edit-submit" {# ボタンのユニークなID #}
+    >
+      Search {# ボタンに表示されるテキスト #}
+    </button>
   </div>
+
 </form>
+
