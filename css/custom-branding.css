@@ -40,3 +40,6 @@
   margin-left: 20px;
 }
 
+.custom-max-height {
+  max-height: 200px; /* 最大高さを150pxに設定 */
+}
