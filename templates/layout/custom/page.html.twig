@@ -84,13 +84,13 @@
             {% endif %}
         </div>
         <div class="row">
-            <div class="pb-2">
+            <div>
                 {{ page.breadcrumb }} {# パンくずリストの出力 #}
             </div>
-            <div class="pb-2">
+            <div class="px-2">
                 {{ page.highlighted }} {# 強調エリア（例: アラートや通知）の出力 #}
             </div>
-            <div class="pb-2">
+            <div>
                 {{ page.help }} {# ヘルプコンテンツの出力 #}
             </div>
         </div>
@@ -108,7 +108,7 @@
                     {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
                 </div>
             {% endif %}
-            <div class="px-5 py-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
+            <div class="pb-5 py-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
                 {{ page.content }} {# メインコンテンツの出力 #}
                 {% if page.content_bottom %}
                     <div class="p-3">
