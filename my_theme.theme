@@ -90,6 +90,33 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     ],
   ];
 
+  // カスタムCSS
+    $form['custom_css_settings'] = [
+    '#type' => 'details',
+    '#title' => t('Custom CSS Settings'),
+    '#open' => TRUE,
+  ];
+
+  // カスタムCSS適用の有効/無効
+  $form['custom_css_settings']['enable_custom_css'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable Custom CSS'),
+    '#default_value' => theme_get_setting('enable_custom_css', 'my_theme'),
+  ];
+
+  // カスタムCSS入力フィールド
+  $form['custom_css_settings']['custom_css'] = [
+    '#type' => 'textarea',
+    '#title' => t('Custom CSS'),
+    '#description' => t('ここに入力されたカスタム CSS は全ページに適用されます。ただし、不正な入力によりページデザインの破壊やセキュリティリスクが生じる可能性がありますので注意してください。HTML タグや JavaScript を含めないようにしてください。'),
+    '#default_value' => theme_get_setting('custom_css', 'my_theme'),
+    '#states' => [
+      'visible' => [
+        ':input[name="enable_custom_css"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+
   // カスタムサブミットハンドラーを追加。
   $form['#submit'][] = 'my_theme_form_system_theme_settings_submit';
 }
@@ -100,25 +127,58 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
 function my_theme_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
   // 設定を保存する。
   $config = \Drupal::configFactory()->getEditable('my_theme.settings');
-  foreach (['my_theme_header_alignment', 'navbar_type'] as $key) {
+
+  // すべての設定値を一括で保存
+  $keys = ['my_theme_header_alignment', 'navbar_type', 'enable_custom_css', 'custom_css'];
+  foreach ($keys as $key) {
     $config->set($key, $form_state->getValue($key));
   }
+
   $config->save();
 }
+
 
 /**
  * HTMLテンプレート用の変数を準備します。
  */
 function my_theme_preprocess_html(array &$variables) {
-  $theme = theme_get_setting('bootswatch_theme', 'my_theme');
-  $variables['#attached']['library'][] = 'my_theme/global-scripts';
-  $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
-  $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
+  // 必要なテーマ設定を一括取得
+  $theme_settings = [
+    'bootswatch_theme' => theme_get_setting('bootswatch_theme', 'my_theme'),
+    'container_class' => theme_get_setting('container_type', 'my_theme'),
+    'bootstrap_size' => theme_get_setting('bootstrap_size', 'my_theme'),
+  ];
 
-  if ($theme && $theme !== 'bootstrap5') {
-    $variables['#attached']['library'][] = 'my_theme/' . $theme;
+  // 共通スクリプトのライブラリを読み込み
+  $variables['#attached']['library'][] = 'my_theme/global-scripts';
+
+  // テーマ設定値を変数に割り当て
+  foreach ($theme_settings as $key => $value) {
+    $variables[$key] = $value;
+  }
+
+  // Bootswatchテーマが選択されている場合、そのライブラリを追加
+  if (!empty($theme_settings['bootswatch_theme']) && $theme_settings['bootswatch_theme'] !== 'bootstrap5') {
+    $variables['#attached']['library'][] = 'my_theme/' . $theme_settings['bootswatch_theme'];
+  }
+
+  // カスタムCSSの設定を取得
+  $config = \Drupal::config('my_theme.settings');
+  $custom_css = $config->get('custom_css');
+
+  // カスタムCSSが有効かつ内容がある場合、<style>タグに埋め込む
+  if ($config->get('enable_custom_css') && !empty($custom_css)) {
+    $variables['#attached']['html_head'][] = [
+      [
+        '#tag' => 'style',
+        '#attributes' => ['type' => 'text/css'],
+        '#value' => $custom_css,
+      ],
+      'custom_css',
+    ];
   }
 }
+
 
 /**
  * ページテンプレート用の変数を準備します。
