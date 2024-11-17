@@ -9,10 +9,10 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: MJQHvY0LNLdOdkPcvs8vDCLs_JnEIpb5DIIOcyIk-VI
+  default_config_hash: PkpGx7KuLtBRi1KO0wHbZAM6TZlI8QsF-W-PczVEdjA
 id: my_theme_views_block__content_recent_block_1
 theme: my_theme
-region: sidebar_first
+region: sidebar_second
 weight: -7
 provider: null
 plugin: 'views_block:content_recent-block_1'

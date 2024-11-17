@@ -1,6 +1,6 @@
 # Sterterkit Default
 base:
-  version: 1.x 
+  version: 1.0.0 
   css:
     component:
       css/components/action-links.css:
@@ -48,58 +48,58 @@ base:
       css/components/ui-dialog.css:
         weight: -10
 dialog:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/dialog.css:
         weight: -10
 dropbutton:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/dropbutton.css:
         weight: -10
 file:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/file.css:
         weight: -10
 image-widget:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/image-widget.css: {  }
 indented:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/indented.css: {  }
 messages:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/messages.css:
         weight: -10
 node:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/node.css:
         weight: -10
 progress:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/progress.css:
         weight: -10
 search-results:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/search-results.css: {  }
 user:
-  version: VERSION
+  version: 1.0.0
   css:
     component:
       css/components/user.css:
@@ -304,28 +304,28 @@ custom-navbar:
 
 # Site Branding
 custom-branding:
-  version: 1.x
+  version: 1.0.0
   css:
     theme:
       css/custom-branding.css: {}
 
 # Headder      
 custom-header:
-  version: 1.x
+  version: 1.0.0
   css:
     theme:
       css/custom-header.css: {}
 
 # blockquote      
 custom-blockquote:
-  version: 1.x
+  version: 1.0.0
   css:
     theme:
       css/custom-blockquote.css: {}
 
 # view-liset
 custom-view-list:
-  version: 1.x
+  version: 1.0.0
   css:
     theme:
       css/custom-view-list.css: {}

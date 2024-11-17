@@ -9,7 +9,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: NzgsKoOwJf-ZZartXLYcRXp-yoTXnfwB1E1RiaFal6c
+  default_config_hash: 7GDCiwquGUzqr5pLACKUe5fuDwIj9Lakv1CzsYtttoo
 id: my_theme_main_menu
 theme: my_theme
 region: header

@@ -5,11 +5,11 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: 6sPQidCCMI2diI51n5txDWqZ3iFbJ8SgiBJRNVefByA
+  default_config_hash: QECj9Luz230O_dTvvt0j1Z8S8p3BvxRfYOffKGAXNc4
 id: my_theme_secondary_local_tasks
 theme: my_theme
-region: content
-weight: -6
+region: help
+weight: -5
 provider: null
 plugin: local_tasks_block
 settings:

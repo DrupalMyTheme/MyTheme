@@ -1,5 +1,5 @@
 _core:
-  default_config_hash: NAxm_yOlW8rDxcxRVuXgP7XCKOSlZg-g9982qH94mLo
+  default_config_hash: snOtmsSx46_cUkgcIQBNxDRoyVgV0PRdiAUtP0PZL9s
 features:
   node_user_picture: 1
   comment_user_picture: 1
@@ -9,10 +9,12 @@ logo:
   use_default: 1
 favicon:
   use_default: 1
-container_type: container
+container_type: container-fluid
 bootstrap_size: xl
-bootswatch_theme: pulse
+bootswatch_theme: darkly
 branding_alignment: center
 header_alignment: right
 my_theme_header_alignment: right
 navbar_type: Navbar_1
+enable_custom_css: 1
+custom_css: ''

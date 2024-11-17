@@ -8,6 +8,8 @@ dependencies:
     - system
   theme:
     - my_theme
+_core:
+  default_config_hash: ciIO0L9Cz4HSznCS_OVK-Ol7i8NLHXl2ABbT27EdfjI
 id: my_theme_futsuta
 theme: my_theme
 region: footer_first
