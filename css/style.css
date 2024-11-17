@@ -5,3 +5,18 @@ svg {
   vertical-align: middle;
   margin-bottom: 30px; /* ここで余白を指定する */
 } 
+
+.footer-top {
+  background-color: black;
+  color: blanchedalmond;
+}
+
+.footer-middle {
+  background-color: black;
+  color: blanchedalmond;
+}
+
+.footer-bottom {
+  background-color: black;
+  color: blanchedalmond;
+}

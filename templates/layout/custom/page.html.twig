@@ -64,7 +64,7 @@
         </div>
         <div class="row d-flex align-items-center justify-content-between">
             <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
-                <div class="branding-container p-3 custom-max-height">
+                <div class="branding-container px-3 pt-3">
                     {{ page.branding }} {# ブランドロゴや名称などの出力 #}
                 </div>
             </div>
@@ -83,10 +83,16 @@
                 </div>
             {% endif %}
         </div>
-        <div class="row pb-5">
-            {{ page.breadcrumb }} {# パンくずリストの出力 #}
-            {{ page.highlighted }} {# 強調エリア（例: アラートや通知）の出力 #}
-            {{ page.help }} {# ヘルプコンテンツの出力 #}
+        <div class="row">
+            <div class="pb-2">
+                {{ page.breadcrumb }} {# パンくずリストの出力 #}
+            </div>
+            <div class="pb-2">
+                {{ page.highlighted }} {# 強調エリア（例: アラートや通知）の出力 #}
+            </div>
+            <div class="pb-2">
+                {{ page.help }} {# ヘルプコンテンツの出力 #}
+            </div>
         </div>
     </header>
 
@@ -102,7 +108,7 @@
                     {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
                 </div>
             {% endif %}
-            <div class="p-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
+            <div class="px-5 py-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
                 {{ page.content }} {# メインコンテンツの出力 #}
                 {% if page.content_bottom %}
                     <div class="p-3">
