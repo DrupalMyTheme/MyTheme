@@ -1,44 +1,160 @@
 <?php
+
 /**
  * @file
- * Functions to support theming.
+ * テーマのサポート関数を提供します。
  */
-
-/**
- * Implements hook_preprocess_image_widget().
- */
-function my_theme_preprocess_image_widget(array &$variables) {
-  $data = &$variables['data'];
-  // This prevents image widget templates from rendering preview container HTML
-  // to users that do not have permission to access these previews.
-  // @todo revisit in https://drupal.org/node/953034
-  // @todo revisit in https://drupal.org/node/3114318
-  if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
-    unset($data['preview']);
-  }
-}
-
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 
 /**
- * テーマ設定フォームを変更し、テーマ設定を追加する
+ * hook_preprocess_image_widget() の実装。
+ */
+function my_theme_preprocess_image_widget(array &$variables) {
+  // プレビューコンテナHTMLのレンダリングを、アクセス権がない場合に防ぎます。
+  if (!empty($variables['data']['preview']['#access']) && $variables['data']['preview']['#access'] === FALSE) {
+    unset($variables['data']['preview']);
+  }
+}
+
+/**
+ * テーマ設定フォームを変更してカスタム設定を追加します。
  */
 function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  // テーマ設定セクションの追加。
   $form['my_theme_settings'] = [
     '#type' => 'details',
-    '#title' => t('My Theme settings'),
+    '#title' => t('My Theme の設定'),
     '#open' => TRUE,
   ];
 
-  // Bootswatchテーマの設定
+  // Bootswatchテーマの選択肢を追加。
   $form['bootswatch_theme'] = [
     '#type' => 'select',
-    '#title' => t('Bootswatch Theme'),
-    '#description' => t('サイト用にBootswatchのテーマを選択してください。'),
+    '#title' => t('Bootswatch テーマ'),
+    '#description' => t('サイト用のBootswatchテーマを選択してください。'),
     '#default_value' => theme_get_setting('bootswatch_theme', 'my_theme'),
-    '#options' => [
+    '#options' => _my_theme_bootswatch_options(),
+  ];
+
+  // その他のテーマ設定を追加。
+  $form['my_theme_settings'] += [
+    'container_type' => [
+      '#type' => 'select',
+      '#title' => t('コンテナタイプ'),
+      '#default_value' => theme_get_setting('container_type', 'my_theme'),
+      '#options' => [
+        'container' => t('固定'),
+        'container-fluid' => t('流動的'),
+      ],
+    ],
+    'bootstrap_size' => [
+      '#type' => 'select',
+      '#title' => t('Bootstrap サイズ'),
+      '#description' => t('注意: コンテナタイプが「流動的」の場合は無視されます。'),
+      '#default_value' => theme_get_setting('bootstrap_size', 'my_theme'),
+      '#options' => _my_theme_bootstrap_size_options(),
+    ],
+    'navbar_type' => [
+      '#type' => 'select',
+      '#title' => t('ナビゲーションバータイプ'),
+      '#default_value' => theme_get_setting('navbar_type', 'my_theme'),
+      '#options' => _my_theme_navbar_options(),
+      '#description' => t('ナビゲーションバーの種類を選択してください。'),
+    ],
+  ];
+
+  // 配置設定を追加。
+  $form += [
+    'branding_alignment' => [
+      '#type' => 'radios',
+      '#title' => t('タイトルやロゴの水平位置'),
+      '#default_value' => theme_get_setting('branding_alignment'),
+      '#options' => [
+        'left' => t('左寄せ'),
+        'center' => t('中央'),
+      ],
+      '#description' => t('Main または Additional navigation にブロックが配置されている場合、左に固定されます。'),
+    ],
+    'my_theme_header_alignment' => [
+      '#type' => 'select',
+      '#title' => t('ヘッダー要素の水平位置'),
+      '#default_value' => theme_get_setting('my_theme_header_alignment'),
+      '#options' => [
+        'left' => t('左寄せ'),
+        'center' => t('中央'),
+        'right' => t('右寄せ'),
+      ],
+      '#description' => t('Header にブロックが配置されている場合のみ有効です。'),
+    ],
+  ];
+
+  // カスタムサブミットハンドラーを追加。
+  $form['#submit'][] = 'my_theme_form_system_theme_settings_submit';
+}
+
+/**
+ * テーマ設定フォームのカスタムサブミットハンドラー。
+ */
+function my_theme_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
+  // 設定を保存する。
+  $config = \Drupal::configFactory()->getEditable('my_theme.settings');
+  foreach (['my_theme_header_alignment', 'navbar_type'] as $key) {
+    $config->set($key, $form_state->getValue($key));
+  }
+  $config->save();
+}
+
+/**
+ * HTMLテンプレート用の変数を準備します。
+ */
+function my_theme_preprocess_html(array &$variables) {
+  $theme = theme_get_setting('bootswatch_theme', 'my_theme');
+  $variables['#attached']['library'][] = 'my_theme/global-scripts';
+  $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
+  $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
+
+  if ($theme && $theme !== 'bootstrap5') {
+    $variables['#attached']['library'][] = 'my_theme/' . $theme;
+  }
+}
+
+/**
+ * ページテンプレート用の変数を準備します。
+ */
+function my_theme_preprocess_page(array &$variables) {
+  $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
+  $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
+  $variables['branding_alignment'] = theme_get_setting('branding_alignment');
+  $variables['header_alignment'] = theme_get_setting('my_theme_header_alignment');
+  $variables['navbar_type'] = theme_get_setting('navbar_type');
+}
+
+/**
+ * ブロックテンプレート用の変数を準備します。
+ */
+function my_theme_preprocess_block(array &$variables) {
+  // メインメニューのデータを取得。
+  if ($variables['plugin_id'] == 'system_menu_block:main') {
+    $parameters = new MenuTreeParameters();
+    $menu_tree = \Drupal::menuTree()->load('main', $parameters);
+    $variables['main_menu'] = \Drupal::menuTree()->build($menu_tree)['#items'];
+  }
+
+  // 検索フォームブロックの場合、Bootswatchテーマを取得。
+  if ($variables['plugin_id'] == 'search_form_block') {
+    $variables['bootswatch_theme'] = theme_get_setting('bootswatch_theme', 'my_theme');
+  }
+
+  $variables['navbar_type'] = theme_get_setting('navbar_type');
+}
+
+/**
+ * Bootswatchテーマの選択肢を提供します。
+ */
+function _my_theme_bootswatch_options() {
+  return [
       'cerulean' => t('Cerulean'),
       'cosmo' => t('Cosmo'),
       'cyborg' => t('Cyborg'),
@@ -64,160 +180,31 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       'vapor' => t('Vapor'),
       'yeti' => t('Yeti'),
       'zephyr' => t('Zephyr'),
-    ],
   ];
-
-  // コンテナタイプの設定
-  $form['my_theme_settings']['container_type'] = [
-    '#type' => 'select',
-    '#title' => t('Container Type'),
-    '#default_value' => theme_get_setting('container_type', 'my_theme'),
-    '#options' => [
-      'container' => t('Fixed'),
-      'container-fluid' => t('Fluid'),
-    ],
-  ];
-
-  // ブートストラップサイズの設定
-  $form['my_theme_settings']['bootstrap_size'] = [
-    '#type' => 'select',
-    '#title' => t('Bootstrap Size'),
-    '#description' => t('注意: この設定はコンテナタイプがFluidの場合無視されます。'),
-    '#options' => [
-      'xs' => t('Extra small (xs)'),
-      'sm' => t('Small (sm)'),
-      'md' => t('Medium (md)'),
-      'lg' => t('Large (lg)'),
-      'xl' => t('Extra large (xl)'),
-      'xxl' => t('Extra extra large (xxl)'),
-    ],
-    '#default_value' => theme_get_setting('bootstrap_size', 'my_theme'),
-  ];
-
-  // ブランドの配置設定を追加
-  $form['branding_alignment'] = [
-    '#type' => 'radios',
-    '#title' => t('Branding Alignment'),
-    '#description' => t('注意: この設定は Main navigation や Additional navigation にブロックが配置されていると Left に固定されます。'),
-    '#default_value' => theme_get_setting('branding_alignment'),
-    '#options' => [
-      'left' => t('左'),
-      'center' => t('中央'),
-    ],
-  ];
-
-
-    // ヘッダーの配置設定を追加
-  $form['my_theme_header_alignment'] = [
-    '#type' => 'select',
-    '#title' => t('Header Alignment'),
-    '#description' => t('注意: この設定は Header にブロックが配置されているときだけ有効です。'),
-    '#default_value' => theme_get_setting('my_theme_header_alignment'),
-    '#options' => [
-      'left' => t('左'),
-      'center' => t('中央'),
-      'right' => t('右'),
-    ],
-  ];
-
-  // ナビゲーションバーのタイプ設定を追加
-  $form['my_theme_settings']['navbar_type'] = [
-    '#type' => 'select',
-    '#title' => t('Navbar Type'),
-    '#default_value' => theme_get_setting('navbar_type', 'my_theme'),
-    '#options' => [
-      'Navbar_1' => t('Navbar 1 (Primary)'),
-      'Navbar_2' => t('Navbar 2 (Dark)'),
-      'Navbar_3' => t('Navbar 3 (Light)'),
-      'Navbar_4' => t('Navbar 4 (透過)'),
-    ],
-    '#description' => t('ナビゲーションバーのタイプを選択してください。'),
-  ];
-
-  // フォームの再構築を確実にするためのカスタムサブミットハンドラー
-  $form['#submit'][] = 'my_theme_form_system_theme_settings_submit';
 }
 
 /**
- * カスタムサブミットハンドラー
+ * Bootstrapサイズの選択肢を提供します。
  */
-function my_theme_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
-  // ヘッダーの配置設定を保存
-  $header_alignment = $form_state->getValue('my_theme_header_alignment');
-  // ナビゲーションバーのタイプ設定を保存
-  $navbar_type = $form_state->getValue('navbar_type');
-
-  // 設定を保存するためにconfigオブジェクトを使用
-  \Drupal::configFactory()->getEditable('my_theme.settings')
-    ->set('my_theme_header_alignment', $header_alignment)
-    ->set('navbar_type', $navbar_type)
-    ->save();
+function _my_theme_bootstrap_size_options() {
+  return [
+    'xs' => t('超小 (xs)'),
+    'sm' => t('小 (sm)'),
+    'md' => t('中 (md)'),
+    'lg' => t('大 (lg)'),
+    'xl' => t('超大 (xl)'),
+    'xxl' => t('特大 (xxl)'),
+  ];
 }
 
 /**
- * HTMLテンプレートにテーマ設定を反映する
+ * ナビゲーションバーの選択肢を提供します。
  */
-function my_theme_preprocess_html(array &$variables) {
-  $theme = theme_get_setting('bootswatch_theme', 'my_theme');
-
-  // 共通のスクリプトを読み込む
-  $variables['#attached']['library'][] = 'my_theme/global-scripts';
-
-  // テーマ設定関係を読み込む
-  $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
-  $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
-
-  // 選択されたBootswatchのテーマCSSをライブラリから読み込む
-  if ($theme && $theme !== 'bootstrap5') {
-    $variables['#attached']['library'][] = 'my_theme/' . $theme;
-  }
-}
-
-/**
- * ページテンプレートにテーマ設定を反映する
- */
-function my_theme_preprocess_page(array &$variables) {
-  // サイトブランディングの左寄せ・中央寄せの設定
-  $variables['container_class'] = theme_get_setting('container_type', 'my_theme');
-  $variables['bootstrap_size'] = theme_get_setting('bootstrap_size', 'my_theme');
-  $variables['branding_alignment'] = theme_get_setting('branding_alignment');
-
-  // ヘッダーの配置設定を取得
-  $header_alignment = theme_get_setting('my_theme_header_alignment');
-  
-  // ページテンプレートに配置設定を追加
-  $variables['header_alignment'] = $header_alignment;
-
-  // Get the navbar type setting from the theme settings.
-  $navbar_type = theme_get_setting('navbar_type');
-
-  // Pass the navbar type to the template variables.
-  $variables['navbar_type'] = $navbar_type;
-}
-
-/**
- * ブロックテンプレートにテーマ設定を反映する
- */
-function my_theme_preprocess_block(array &$variables) {
-  // メインメニューのデータ取得
-  if ($variables['plugin_id'] == 'system_menu_block:main') {
-    $parameters = new MenuTreeParameters();
-    $menu_tree = \Drupal::menuTree()->load('main', $parameters);
-    $menu = \Drupal::menuTree()->build($menu_tree);
-    $variables['main_menu'] = $menu['#items'];
-  }
-
-  // ナビゲーションバーのタイプ設定を取得
-  $navbar_type = theme_get_setting('navbar_type');
-  // テンプレート変数にナビゲーションバーのタイプを渡す
-  $variables['navbar_type'] = $navbar_type;
-
-  // 検索ブロックのデータ取得
-  if ($variables['plugin_id'] == 'search_form_block') {
-    // Bootswatchテーマ設定を取得
-    $bootswatch_theme = theme_get_setting('bootswatch_theme', 'my_theme');
-
-    // テンプレート変数にBootswatchテーマを渡す
-    $variables['bootswatch_theme'] = $bootswatch_theme;
-  }
+function _my_theme_navbar_options() {
+  return [
+    'Navbar_1' => t('Navbar 1 (Primary)'),
+    'Navbar_2' => t('Navbar 2 (Dark)'),
+    'Navbar_3' => t('Navbar 3 (Light)'),
+    'Navbar_4' => t('透過'),
+  ];
 }
