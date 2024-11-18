@@ -104,20 +104,20 @@
         
         <div class="row">
             {% if sidebar_first_exists %}
-                <div class="p-3 order-1 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
+                <div class="px-3 pb-3 order-1 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
                     {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
                 </div>
             {% endif %}
-            <div class="pb-5 py-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
+            <div class="px-3 pb-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
                 {{ page.content }} {# メインコンテンツの出力 #}
                 {% if page.content_bottom %}
-                    <div class="p-3">
+                    <div class="px-3 pb-3">
                         {{ page.content_bottom }} {# コンテンツ下部の追加セクション #}
                     </div>
                 {% endif %}
             </div>
             {% if sidebar_second_exists %}
-                <div class="p-3 order-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
+                <div class="px-3 pb-3 order-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
                     {{ page.sidebar_second }} {# サイドバー2のコンテンツを出力 #}
                 </div>
             {% endif %}

@@ -6,16 +6,8 @@ svg {
   margin-bottom: 30px; /* ここで余白を指定する */
 } 
 
-.footer-top {
-  background-color: black;
-  color: blanchedalmond;
-}
-
-.footer-middle {
-  background-color: black;
-  color: blanchedalmond;
-}
-
+.footer-top ,
+.footer-middle ,
 .footer-bottom {
   background-color: black;
   color: blanchedalmond;
