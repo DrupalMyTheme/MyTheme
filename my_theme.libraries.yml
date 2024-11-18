@@ -316,6 +316,13 @@ custom-header:
     theme:
       css/custom-header.css: {}
 
+# sidebar      
+custom-sidebar:
+  version: 1.0.0
+  css:
+    theme:
+      css/custom-sidebar.css: {}
+
 # blockquote      
 custom-blockquote:
   version: 1.0.0

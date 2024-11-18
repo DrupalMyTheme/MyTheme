@@ -1,0 +1,11 @@
+.region-sidebar-first .block{ 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ブロックに影を追加 */
+    margin-bottom: 30px; /* ブロック間の下にスペースを追加 */
+    padding: 10px 10px;
+}
+
+.region-sidebar-second .block{ 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ブロックに影を追加 */
+    margin-bottom: 30px; /* ブロック間の下にスペースを追加 */
+    padding: 10px 10px;
+}
