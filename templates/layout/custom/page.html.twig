@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="row d-flex align-items-center justify-content-between">
+        <div class="row g-0 d-flex align-items-center justify-content-between">
             <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
                 <div class="branding-container">
                     {{ page.branding }} {# ブランドロゴや名称などの出力 #}
@@ -83,13 +83,13 @@
                 </div>
             {% endif %}
         </div>
-        <div class="row">
+        <div class="row g-0">
             {{ page.breadcrumb }} {# パンくずリストの出力 #}
         </div>
-        <div class="row">
+        <div class="row g-0">
             {{ page.highlighted }} {# 強調エリア（例: アラートや通知）の出力 #}
         </div>
-        <div class="row>
+        <div class="row g-0">
             {{ page.help }} {# ヘルプコンテンツの出力 #}
         </div>
     </header>
@@ -100,7 +100,7 @@
         {% set sidebar_second_exists = page.sidebar_second is not empty %} {# サイドバー2の存在確認 #}
         {% set content_columns = 12 - (sidebar_first_exists ? 3 : 0) - (sidebar_second_exists ? 3 : 0) %} {# コンテンツエリアのカラム数を計算 #}
         
-        <div class="row">
+        <div class="row g-0">
             {% if sidebar_first_exists %}
                 <div class="order-1 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
                     {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
@@ -125,7 +125,7 @@
    <footer role="contentinfo">
 
 l        <div class="footer-top">
-            <div class="row">
+            <div class="row g-0">
             <div class="d-flex justify-content-center">
                 {{ page.footer_top }}
             </div>
@@ -133,7 +133,7 @@ l        <div class="footer-top">
         </div>
 
         <div class="footer-middle">
-            <div class="row">
+            <div class="row g-0">
                 <div class="col-12 col-lg-4">
                     {{ page.footer_first }}
                 </div>
@@ -147,7 +147,7 @@ l        <div class="footer-top">
         </div>
 
         <div class="footer-bottom">
-            <div class="row">
+            <div class="row g-0">
             <div class="d-flex justify-content-center">
                 {{ page.footer_bottom }}
             </div>
