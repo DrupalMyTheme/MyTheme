@@ -53,13 +53,13 @@
 <div class="{{ container_class }}-{{ bootstrap_size }}">
 
     <header>
-        <div class="row g-0 {{ navbar_classes }}"> {# ナビバーに適用するクラスを追加 #}
+        <div class="row g-0 px-2 {{ navbar_classes }}"> {# ナビバーに適用するクラスを追加 #}
             {# ヘッダーの配置に応じたクラスを動的に設定 #}
             <div class="header-content {% if header_alignment == 'left' %}header-left-align{% elseif header_alignment == 'center' %}header-center-align{% else %}header-right-align{% endif %}">
                 {{ page.header }} {# ヘッダーのコンテンツを出力 #}
             </div>
         </div>
-        <div class="row g-0 d-flex align-items-center justify-content-between">
+        <div class="row g-0 px-2 py-1 d-flex align-items-center justify-content-between">
             <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
                 <div class="branding-container">
                     {{ page.branding }} {# ブランドロゴや名称などの出力 #}
@@ -80,13 +80,13 @@
                 </div>
             {% endif %}
         </div>
-        <div class="row g-0">
+        <div class="row g-0 px-2">
             {{ page.breadcrumb }} {# パンくずリストの出力 #}
         </div>
-        <div class="row g-0">
+        <div class="row g-0 px-2">
             {{ page.highlighted }} {# 強調エリア（例: アラートや通知）の出力 #}
         </div>
-        <div class="row g-0">
+        <div class="row g-0 px-2">
             {{ page.help }} {# ヘルプコンテンツの出力 #}
         </div>
     </header>
@@ -100,20 +100,42 @@
         <div class="row g-0">
             {% if sidebar_first_exists %}
                 <div class="order-1 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
-                    {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
+                    <div class="px-2">
+                        {{ page.sidebar_first }} {# サイドバー1のコンテンツを出力 #}
+                    </div>
                 </div>
             {% endif %}
             <div class="{{ 'col-12 col-' ~ bootstrap_size ~ '-' ~ content_columns }} {{ sidebar_first_exists and sidebar_second_exists ? 'order-2' : 'order-1' }}">
-                {{ page.content }} {# メインコンテンツの出力 #}
+                {% if page.sidebar_first_exists is not empty and pagw.sidebar_second_exists is not empty %}
+                    <div class="pb-2"> 
+                {% elseif page.sidebar_first_exists is not empty and pagw.sidebar_second_exists is empty %}
+                    <div class="pr-2 pb-2"> 
+                {% elseif page.sidebar_first_exists is empty and pagw.sidebar_second_exists is not empty %}
+                    <div class="pl-2 pb-2"> 
+                {% else %}
+                    <div class="px-2 pb-2">
+                {% endif %}
+                        {{ page.content }} {# メインコンテンツの出力 #}
+                    </div> 
                 {% if page.content_bottom %}
-                    <div class="pb-3">
+                {% if page.sidebar_first_exists is not empty and pagw.sidebar_second_exists is not empty %}
+                    <div class="pb-2"> 
+                {% elseif page.sidebar_first_exists is not empty and pagw.sidebar_second_exists is empty %}
+                    <div class="pr-2 pb-2"> 
+                {% elseif page.sidebar_first_exists is empty and pagw.sidebar_second_exists is not empty %}
+                    <div class="pl-2 pb-2"> 
+                {% else %}
+                    <div class="px-2 pb-2">
+                {% endif %}
                         {{ page.content_bottom }} {# コンテンツ下部の追加セクション #}
                     </div>
                 {% endif %}
             </div>
             {% if sidebar_second_exists %}
                 <div class="order-3 {{ 'col-12 col-' ~ bootstrap_size ~ '-3' }}">
-                    {{ page.sidebar_second }} {# サイドバー2のコンテンツを出力 #}
+                    <div class="px-2">
+                        {{ page.sidebar_second }} {# サイドバー2のコンテンツを出力 #}
+                    </div>
                 </div>
             {% endif %}
         </div>
@@ -122,15 +144,15 @@
    <footer role="contentinfo">
 
 l        <div class="footer-top">
-            <div class="row g-0">
-            <div class="d-flex justify-content-center">
-                {{ page.footer_top }}
-            </div>
+            <div class="row g-0 px-2 py-1">
+                <div class="d-flex justify-content-center">
+                    {{ page.footer_top }}
+                </div>
             </div>
         </div>
 
         <div class="footer-middle">
-            <div class="row g-0">
+            <div class="row g-0 px-2">
                 <div class="col-12 col-lg-4">
                     {{ page.footer_first }}
                 </div>
@@ -144,10 +166,10 @@ l        <div class="footer-top">
         </div>
 
         <div class="footer-bottom">
-            <div class="row g-0">
-            <div class="d-flex justify-content-center">
-                {{ page.footer_bottom }}
-            </div>
+            <div class="row g-0 px-2 py-1">
+                <div class="d-flex justify-content-center">
+                    {{ page.footer_bottom }}
+                </div>
             </div>
         </div>
     </footer>
