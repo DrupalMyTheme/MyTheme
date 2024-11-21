@@ -22,26 +22,3 @@
 .header-right-align {
   justify-content: flex-end !important; /* 右寄せ */
 }
-
-/* region-headerのスタイル */
-.region-header {
-  display: flex !important; /* フレックスボックスを強制適用 */
-  align-items: center !important; /* 縦方向を中央に揃える */
-  flex-wrap: nowrap !important; /* 要素が折り返さないようにする */
-  gap: 10px; /* 子要素間のギャップを追加 */
-}
-
-/* region-headerの左寄せスタイル */
-.region-header-left-align {
-  justify-content: flex-start !important; /* 左寄せ */
-}
-
-/* region-headerの中央寄せスタイル */
-.region-header-center-align {
-  justify-content: center !important; /* 中央寄せ */
-}
-
-/* region-headerの右寄せスタイル */
-.region-header-right-align {
-  justify-content: flex-end !important; /* 右寄せ */
-}

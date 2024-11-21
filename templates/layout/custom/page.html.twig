@@ -53,13 +53,10 @@
 <div class="{{ container_class }}-{{ bootstrap_size }}">
 
     <header>
-        <div class="{{ navbar_classes }}"> {# ナビバーに適用するクラスを追加 #}
+        <div class="row g-0 {{ navbar_classes }}"> {# ナビバーに適用するクラスを追加 #}
+            {# ヘッダーの配置に応じたクラスを動的に設定 #}
             <div class="header-content {% if header_alignment == 'left' %}header-left-align{% elseif header_alignment == 'center' %}header-center-align{% else %}header-right-align{% endif %}">
-                {# ヘッダーの配置に応じたクラスを動的に設定 #}
-                <div class="region region-header {% if header_alignment == 'left' %}region-header-left-align{% elseif header_alignment == 'center' %}region-header-center-align{% else %}region-header-right-align{% endif %}">
-                    {# ヘッダーリージョンのクラスも配置に応じて変更 #}
-                    {{ page.header }} {# ヘッダーのコンテンツを出力 #}
-                </div>
+                {{ page.header }} {# ヘッダーのコンテンツを出力 #}
             </div>
         </div>
         <div class="row g-0 d-flex align-items-center justify-content-between">
