@@ -330,10 +330,3 @@ custom-blockquote:
     theme:
       css/custom-blockquote.css: {}
 
-# heading(h1~h6)      
-custom-heading:
-  version: 1.0.0
-  css:
-    theme:
-      css/custom-heading.css: {}
-
