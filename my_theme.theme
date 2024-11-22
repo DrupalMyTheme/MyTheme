@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Render\Element;
 
 /**
  * hook_preprocess_image_widget() の実装。
@@ -190,13 +191,35 @@ function my_theme_preprocess_page(array &$variables) {
  */
 function my_theme_preprocess_block(array &$variables) {
   // メインメニューのデータを取得。
+  // メインメニューのブロックをターゲットにする
   if ($variables['plugin_id'] == 'system_menu_block:main') {
-    $parameters = new MenuTreeParameters();
-    $menu_tree = \Drupal::menuTree()->load('main', $parameters);
-    $variables['main_menu'] = \Drupal::menuTree()->build($menu_tree)['#items'];
+    // メニューの内部名称
+    $menu_name = 'main';
+    // MenuTreeParameters の初期化
+    $parameters = (new MenuTreeParameters())
+      ->setTopLevelOnly() // トップレベルのみ取得
+      ->setMaxDepth(3); // 必要に応じて深さを制限
+    // メニュー項目を取得
+    $menu_tree = \Drupal::menuTree()->load($menu_name, $parameters);
+    if (!empty($menu_tree)) {
+      // 重み順にメニュー項目をソート
+      usort($menu_tree, function ($a, $b) {
+        return $a->link->getWeight() - $b->link->getWeight();
+      });
+      // レンダリング可能なツリーを構築
+      $renderable_tree = \Drupal::menuTree()->build($menu_tree);
+      // メニュー項目をテンプレートに渡す
+      if (isset($renderable_tree['#items'])) {
+        $variables['main_menu'] = $renderable_tree['#items'];
+      } else {
+        \Drupal::logger('my_theme')->warning('Menu tree does not contain #items key.');
+      }
+    } else {
+      \Drupal::logger('my_theme')->warning('Menu tree for @menu_name is empty.', ['@menu_name' => $menu_name]);
+    }
   }
 
-  // 検索フォームブロックの場合、Bootswatchテーマを取得。
+// 検索フォームブロックの場合、Bootswatchテーマを取得。
   if ($variables['plugin_id'] == 'search_form_block') {
     $variables['bootswatch_theme'] = theme_get_setting('bootswatch_theme', 'my_theme');
   }
