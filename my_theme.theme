@@ -22,13 +22,6 @@ function my_theme_preprocess_image_widget(array &$variables) {
  * テーマ設定フォームを変更してカスタム設定を追加します。
  */
 function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
-  // テーマ設定セクションの追加。
-  $form['my_theme_settings'] = [
-    '#type' => 'details',
-    '#title' => t('My Theme の設定'),
-    '#open' => TRUE,
-  ];
-
   // Bootswatchテーマの選択肢を追加。
   $form['bootswatch_theme'] = [
     '#type' => 'select',
@@ -36,6 +29,13 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#description' => t('サイト用のBootswatchテーマを選択してください。'),
     '#default_value' => theme_get_setting('bootswatch_theme', 'my_theme'),
     '#options' => _my_theme_bootswatch_options(),
+  ];
+
+  // テーマ設定セクションの追加。
+  $form['my_theme_settings'] = [
+    '#type' => 'details',
+    '#title' => t('My Theme の設定'),
+    '#open' => TRUE,
   ];
 
   // その他のテーマ設定を追加。
@@ -63,10 +63,8 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       '#options' => _my_theme_navbar_options(),
       '#description' => t('ナビゲーションバーの種類を選択してください。'),
     ],
-  ];
 
   // 配置設定を追加。
-  $form += [
     'branding_alignment' => [
       '#type' => 'radios',
       '#title' => t('タイトルやロゴの水平位置'),

@@ -12,6 +12,7 @@ libraries:
   - my_theme/custom-header
   - my_theme/custom-sidebar
   - my_theme/custom-blockquote
+  - my_theme/custom-heading
 libraries-extend:
   user/drupal.user:
     - my_theme/user
