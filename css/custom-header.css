@@ -45,3 +45,8 @@
 .region-header-right-align {
   justify-content: flex-end !important; /* 右寄せ */
 }
+
+/* 検索フォームの入力フィールドの幅を指定 */
+#edit-keys.form-control {
+  max-width: 180px; /* 幅を設定 */
+}

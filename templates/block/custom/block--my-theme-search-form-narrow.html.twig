@@ -1,5 +1,5 @@
 {# 検索フォームの開始。Bootstrapクラスを活用し、スタイルを適用 #}
-<form class="d-flex gap-0" action="/search/node" method="get">
+<form class="d-flex gap-1" action="/search/node" method="get">
   
   {# 検索フィールドのラッパー #}
   <div>
@@ -8,7 +8,7 @@
 
     {# 検索入力フィールド。フォーム全体のスタイルはBootstrapのクラスを使用 #}
     <input 
-      class="form-control my-2 ms-2" {# 入力フィールドのスタイル。上下と左の余白を'my-2 ms-2'で指定 #}
+      class="form-control my-2" {# 入力フィールドのスタイル。上下と左の余白を'my-2'で指定 #}
       type="search" {# 入力タイプを'search'に指定 #}
       placeholder="Search" {# ユーザーに検索フィールドでの入力内容を示唆するプレースホルダー #}
       data-drupal-selector="edit-keys" {# Drupalのフォーム要素識別用データ属性 #}
