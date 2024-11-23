@@ -71,12 +71,12 @@
             {% if page.main_navigation or page.additional_navigation %}
                 <div class="col-12 col-md-6 d-flex justify-content-end flex-wrap align-items-center">
                     {% if page.main_navigation %}
-                        <div class="main-nav order-2 order-md-1 ms-md-auto">
+                        <div class="main-nav order-1 order-md-1 ms-0 ms-md-auto">
                             {{ page.main_navigation }} {# メインナビゲーションの出力 #}
                         </div>
                     {% endif %}
                     {% if page.additional_navigation %}
-                        <div class="additional-nav order-1 order-md-2">
+                        <div class="additional-nav order-2 order-md-2 ms-auto ms-md-0">
                             {{ page.additional_navigation }} {# 追加ナビゲーションの出力 #}
                         </div>
                     {% endif %}
