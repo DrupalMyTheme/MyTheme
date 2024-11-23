@@ -63,13 +63,13 @@
             </div>
         </div>
         <div class="row g-0 px-3 py-1 d-flex align-items-center justify-content-between">
-            <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '6' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
+            <div class="col-12 col-md-{{ page.main_navigation or page.additional_navigation ? '4' : '12' }} d-flex justify-content-{{ page.main_navigation or page.additional_navigation ? 'start' : branding_alignment }}">
                 <div class="branding-container">
                     {{ page.branding }} {# ブランドロゴや名称などの出力 #}
                 </div>
             </div>
             {% if page.main_navigation or page.additional_navigation %}
-                <div class="col-12 col-md-6 d-flex justify-content-end flex-wrap align-items-center">
+                <div class="col-12 col-md-8 d-flex justify-content-end flex-wrap align-items-center">
                     {% if page.main_navigation %}
                         <div class="main-nav order-1 order-md-1 ms-0 ms-md-auto">
                             {{ page.main_navigation }} {# メインナビゲーションの出力 #}
