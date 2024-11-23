@@ -13,12 +13,6 @@ svg {
   color: blanchedalmond;
 }
 
-/* 検索フォームの入力フィールドの幅を指定 */
-#edit-keys.form-control {
-  width: 150px; /* 幅を設定 */
-}
-
-
 /* heading 色々*/
 h1, .h1 {
   font-size: calc(1.3rem + 1.5vw);
