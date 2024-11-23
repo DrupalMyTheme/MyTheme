@@ -15,7 +15,7 @@ svg {
 
 /* 検索フォームの入力フィールドの幅を指定 */
 #edit-keys.form-control {
-  width: 120px; /* 幅を設定 */
+  width: 150px; /* 幅を設定 */
 }
 
 
