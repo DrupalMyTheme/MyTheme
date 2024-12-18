@@ -7,6 +7,9 @@ blockquote {
     color: var(text-secondary);
     border-left: 4px solid rgb(145, 145, 145);
     box-shadow: 0 2px 4px rgb(105, 105, 105);
+    overflow-wrap: anywhere; /* 収まらない場合に折り返す */
+    word-break: normal; /* 単語の分割はデフォルトに依存 */
+    line-break: strict; /* 禁則処理を厳格に適用 */
 }
 
 blockquote:before{
