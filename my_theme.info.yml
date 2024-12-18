@@ -1,7 +1,7 @@
 name: My Theme
 type: theme
 'base theme': stable9
-version: 1.0.0
+version: 1.0.1
 libraries:
   - core/normalize
   - my_theme/base
