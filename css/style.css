@@ -1,6 +1,6 @@
 img,
 svg {
-  max-width: 95%;
+  max-width: 100%;
   height: auto;
   vertical-align: middle;
   margin-bottom: 30px; /* ここで余白を指定する */
