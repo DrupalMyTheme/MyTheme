@@ -46,14 +46,14 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       '#title' => t('コンテナタイプ'),
       '#default_value' => theme_get_setting('container_type', 'my_theme'),
       '#options' => [
-        'container' => t('固定'),
-        'container-fluid' => t('流動的'),
+        'container' => t('固定長'),
+        'container-fluid' => t('可変長'),
       ],
     ],
     'bootstrap_size' => [
       '#type' => 'select',
       '#title' => t('Bootstrap サイズ'),
-      '#description' => t('注意: コンテナタイプが「流動的」の場合は無視されます。'),
+      '#description' => t('注意: コンテナタイプが「可変長」の場合は無視されます。'),
       '#default_value' => theme_get_setting('bootstrap_size', 'my_theme'),
       '#options' => _my_theme_bootstrap_size_options(),
     ],
@@ -82,7 +82,7 @@ function my_theme_form_system_theme_settings_alter(&$form, FormStateInterface $f
       '#default_value' => theme_get_setting('my_theme_header_alignment'),
       '#options' => [
         'left' => t('左寄せ'),
-        'center' => t('中央'),
+        'center' => t('中央寄せ'),
         'right' => t('右寄せ'),
       ],
       '#description' => t('Header にブロックが配置されている場合のみ有効です。'),
