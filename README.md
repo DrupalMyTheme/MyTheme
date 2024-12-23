@@ -50,7 +50,7 @@ Drupal の管理画面にログインし、メニュー「テーマ」をクリ�
 
 <br>
 
-## アップデートの場合
+## アップデート
 
 1. サイトへのアクセス:  
 Drupal サイトにログインして web/themes/my_theme または web/themes/custom/my_theme 等に移動します。
