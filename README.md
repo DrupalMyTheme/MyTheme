@@ -5,7 +5,7 @@
 <br>
 
 # My Theme の概要
-Bootswatch のテーマを気分に応じて用意に切り替えたいと思い、[Starterkit documentation](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme) をもとに「My Theme」を作ってみました。  
+Bootswatch のテーマを気分に応じて用意に切り替えたいと思い、[Starterkit documentation](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme) をもとに Drupal のカスタムテーマ「My Theme」を作ってみました。  
 ヘッダー、左サイドバー、コンテナー、右サイドバー、フッターのオーソドックスな3列スタイルです。  
 <br>
 <br>
