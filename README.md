@@ -56,7 +56,7 @@ Drupal の管理画面にログインし、メニュー「テーマ」をクリ�
 Drupal サイトの管理画面から Drupal サイトをメンテナンスモードにします。
 
 2. サイトへのアクセス:  
-ssh 等で Drupal サイトにログインして web/themes/my_theme または web/themes/custom/my_theme 等に移動します。
+ssh 等で Drupal サイトにログインして my_theme のあるディレクトリ（web/themes/ や web/themes/custom/ 等）に移動します。
 
 3. 既存テーマディレクトリのリネームまたは削除:  
 古いバージョンのテーマディレクトリ ( my_theme ) をリネームするか、削除します。
