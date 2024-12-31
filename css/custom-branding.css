@@ -24,9 +24,16 @@
   margin-left: auto;  /* ナビゲーションを右寄せ */
 }
 
-.site-logo img {
+.site-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.branding-container .site-logo img {
   max-width: 100px;
   height: auto;
+  margin-bottom: 0 !important; /* 余白を削除 */
 }
 
 .site-name {
