@@ -16,7 +16,7 @@
 {% block content %}
   <div class="branding-container">
     {% if site_logo %}
-      <a href="{{ path('<front>') }}" rel="home" class="site-logo">
+      <a href="{{ path('<front>') }}" rel="home" class="site-logo" style="margin-bottom: 0;">
         <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" />
       </a>
     {% endif %}
