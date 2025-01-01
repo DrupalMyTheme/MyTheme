@@ -66,3 +66,23 @@ h5, .h5 {
 h6, .form-wrapper.accordion .accordion-item h2, .form-wrapper.accordion .accordion-item .h2, .h6 {
   font-size: 1.1rem;
 }
+
+
+
+.js-text-full,
+.text-full,
+.form-text,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+textarea {
+    background-color: #fff;
+    color: #454545;
+}
+
+.ck-content {
+    background-color: #fff;
+    color: #454545;
+}
