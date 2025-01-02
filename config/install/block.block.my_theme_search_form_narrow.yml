@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: u43Vgcve3qTRF0ZtkHyQ81bO9zyzDFdPdiYbzRhi-Bo
+  default_config_hash: dntA5SinwKw18bn6WY2SH0p3oR9x0T3tanWKNDWcydM
 id: my_theme_search_form_narrow
 theme: my_theme
 region: header
@@ -19,5 +19,5 @@ settings:
   label: 'Search form (narrow)'
   label_display: visible
   provider: search
-  page_id: ''
+  page_id: null
 visibility: {  }

@@ -5,7 +5,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: ULnI2JM57aRwGCxAFJFA5PtniwL6J0hBSFnmUe8G3xw
+  default_config_hash: YeZtew3nJvzhWbiTSwADrNc06KAvIxoBNgDIFgg-FoU
 id: my_theme_primary_admin_actions
 theme: my_theme
 region: highlighted

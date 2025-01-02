@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: Nab91P51sQBZC6nQQUv7rgSjvgmRbilBNWEKzSnDZH8
+  default_config_hash: 9QNZaDAeo9Vf7B__IKb_xuByxui74EnWxdO9OZBZL_0
 id: my_theme_site_branding
 theme: my_theme
 region: branding
@@ -21,5 +21,5 @@ settings:
   provider: system
   use_site_logo: true
   use_site_name: true
-  use_site_slogan: true
+  use_site_slogan: false
 visibility: {  }

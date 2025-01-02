@@ -7,7 +7,7 @@ dependencies:
   theme:
     - my_theme
 _core:
-  default_config_hash: s3tWjdyg2VPd8zydGrfmRPMS9yRfqlHwZ244A_ZcqhI
+  default_config_hash: p1XUg050b__xfKzVHbWmMAseZqRon6Amg4pue5OrM5w
 id: my_theme_poweredbydrupal
 theme: my_theme
 region: footer_bottom
